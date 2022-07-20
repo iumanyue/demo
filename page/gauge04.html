@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">仪表盘</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 仪表盘
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var colorPrimary = '#03b7c9';
+var option = {
+  backgroundColor: '#222939',
+  // 标题
+  title: { 
+    text: '业务指标完成率',
+    textStyle: {
+      color: '#fff',
+    }
+  },
+  //提示框
+  tooltip : {
+    trigger: 'item',
+  },
+  series: [
+    {
+      name: '业务指标完成率',
+      type: 'gauge',
+      splitNumber: 10,
+      // 轴线
+      axisLine: {
+        show: false,
+      },
+      // 分隔线
+      splitLine: {
+        show: true,
+        length: 10,//分隔线线长
+        lineStyle: {
+          color: colorPrimary,
+          width: 3,
+          type: 'solid',
+        }
+      },
+      // 刻度
+      axisTick: {
+        show: true,
+        length: 5,//刻度线长
+        splitNumber: 10,//分隔线之间分割的刻度数
+        lineStyle: {
+          color: colorPrimary,
+          width: 1,
+          type: 'solid',
+        }
+      },
+      // 标签
+      axisLabel: {
+        show: true,
+        distance: 15,//标签与刻度线的距离
+        color: colorPrimary,
+        fontSize: 12,
+      },
+      // 标题
+      title: {
+        show: true,
+        offsetCenter: [0, '-30%'],
+        color: colorPrimary,
+        fontSize: 16,
+      },
+      // 详情
+      detail: {
+        formatter:'{value}%',
+        textStyle: {
+          fontSize: 20,
+          color: colorPrimary
+        },
+      },
+      // 指针
+      pointer: {
+        show: true,
+        length: '80%',//指针长度，可以是绝对数值，也可以是相对于半径的半分比。
+        width: 6,//指针宽度
+      },
+      // 指针样式
+      itemStyle: {
+        color: colorPrimary,//指针颜色，默认取数值所在的区间的颜色
+      },
+      // 数据
+      data: [
+        {
+          value: 50, 
+          name: '完成率'
+        }
+      ]
+    }
+  ]
+};
+myChart.setOption(option);
+
+// 定时自动刷新动画
+setInterval(function () {
+  option.series[0].data[0].value = (Math.random() * 100).toFixed(0) - 0;
+  myChart.setOption(option, true);
+},2000);
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

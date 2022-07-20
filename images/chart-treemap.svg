@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状 2</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="大屏控件" transform="translate(-299.000000, -193.000000)">
+            <g id="分组-23" transform="translate(291.000000, 193.000000)">
+                <g id="中国地图" transform="translate(8.000000, 0.000000)">
+                    <g id="形状-2" transform="translate(1.500000, 4.000000)">
+                        <rect id="矩形" fill="#FFFFFF" x="0" y="0" width="37" height="32"></rect>
+                        <rect id="矩形" fill="#1A4E74" x="19.5" y="0" width="8" height="32"></rect>
+                        <rect id="矩形" fill="#F46D00" x="0" y="0" width="19" height="22"></rect>
+                        <rect id="矩形" fill="#1A4E74" x="0" y="22.5" width="19" height="9.5"></rect>
+                        <rect id="矩形" fill="#F46D00" x="28" y="0" width="9" height="32"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

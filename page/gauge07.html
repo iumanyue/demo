@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">仪表盘</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 仪表盘
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  backgroundColor: '#FFF',
+  //提示框
+  tooltip : {
+    trigger: 'item',
+  },
+  series: [
+    {
+      type: 'pie',
+      name: '内层环',
+      radius: [0, '28%'],
+      hoverAnimation: false,
+      clockWise: false,
+      itemStyle: {
+        color: '#D5E8FA'
+      },
+      label: {
+        show: false
+      },
+      tooltip: {
+        show: false,
+      },
+      emphasis: {
+        disabled: true,
+      },
+      animation: false,
+      data: [100]
+    },
+    {
+      name: '中间齿轮',
+      type: 'gauge',
+      radius: '30%',
+      startAngle: 0,
+      endAngle: 360,
+      splitNumber: 14,
+      z: 3,
+      // 轴线
+      axisLine: {
+        show: true,
+        lineStyle: {
+          width: 0
+        }
+      },
+      // 分隔线
+      splitLine: {
+        show: true,
+        length: 6,//分隔线线长
+        distance: -6,
+        lineStyle: {
+          color: '#D5E8FA',
+          width: 2,
+          type: 'solid',
+        }
+      },
+      // 刻度
+      axisTick: {
+        show: true,
+        length: 3,//刻度线长
+        splitNumber: 8,//分隔线之间分割的刻度数
+        distance: -3,
+        lineStyle: {
+          color: '#D5E8FA',
+          width: 2,
+          type: 'solid',
+        }
+      },
+      // 标签
+      axisLabel: {
+        show: false,
+      },
+      pointer: {
+        show: false,
+      },
+    },
+    {
+      name: '在线率',
+      type: 'gauge',
+      radius: '36%',
+      z: 3,
+      // 轴线
+      axisLine: {
+        show: true,
+        lineStyle: {
+          width: 10,
+          color: [[1, '#F2F3F5']],
+        }
+      },
+      // 分隔线
+      splitLine: {
+        show: false,
+      },
+      // 刻度
+      axisTick: {
+        show: false,
+      },
+      // 标签
+      axisLabel: {
+        show: false,
+      },
+      // 进度
+      progress: {
+        show: true,
+        width: 10,
+        itemStyle: {
+          color: '#1581E5',
+        }
+      },
+      // 详情
+      detail: {
+        formatter: '{textNum|{value}}' + '{textText|%}',
+        rich: {
+          textNum: {
+            color: '#1581E5',
+            fontSize: 22,
+            fontWeight: '700',
+          },
+          textText: {
+            color: '#1581E5',
+            fontSize: 14,
+          },
+        },
+        offsetCenter: [0, 0],
+      },
+      title: {
+        fontSize: 16,
+        color: "#333",
+        lineHeight: 24,
+        backgroundColor: '#F2F3F5',
+        borderRadius: 3,
+        padding: [0,10,0,10],
+        offsetCenter: [0, '110%']
+      },
+      // 指针
+      pointer: {
+        show: false,
+      },
+      // 数据
+      data: [
+        {
+          value: 88, 
+          name: '在线率'
+        }
+      ]
+    },
+    {
+      name: '在线率',
+      type: 'gauge',
+      radius: '40%',
+      z: 4,
+      // 轴线
+      axisLine: {
+        show: true,
+        lineStyle: {
+          width: 6,
+          color: [[1, '#F2F3F5']],
+        }
+      },
+      // 分隔线
+      splitLine: {
+        show: false,
+      },
+      // 刻度
+      axisTick: {
+        show: false,
+      },
+      // 标签
+      axisLabel: {
+        show: false,
+      },
+      // 进度
+      progress: {
+        show: true,
+        width: 6,
+        itemStyle: {
+          color: '#1581E5',
+          opacity: .3
+        }
+      },
+      // 指针
+      pointer: {
+        show: false,
+      },
+      detail: {
+        show: false
+      },
+      title: {
+        show: false
+      },
+      // 数据
+      data: [
+        {
+          value: 88, 
+          name: '在线率'
+        }
+      ]
+    },
+    {
+      name: '外圈刻度分隔',
+      type: 'gauge',
+      radius: '40%',
+      splitNumber: 40,
+      z: 5,
+      // 轴线
+      axisLine: {
+        show: true,
+        lineStyle: {
+          width: 6,
+          color: [[1, 'rgba(0,0,0,0)']],
+        }
+      },
+      // 分隔线
+      splitLine: {
+        show: true,
+        length: 6,//分隔线线长
+        distance: -6,
+        lineStyle: {
+          color: '#FFF',
+          width: 4,
+          type: 'solid',
+        }
+      },
+      // 刻度
+      axisTick: {
+        show: false,
+      },
+      // 标签
+      axisLabel: {
+        show: false,
+      },
+    }
+    
+  ]
+};
+myChart.setOption(option);
+
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

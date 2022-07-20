@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">渐变色区域填充</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = {
+  category: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+  value: [320, 302, 401, 534, 390, 330, 320],
+};
+var datacoords = [];
+for (var i = 0; i < data.category.length; i++) {
+  datacoords.push(
+    [data.category[i], data.value[i]]
+  )
+}
+var option = {
+  // 标题
+  title: { 
+    text: '折线图流光特效',
+  },
+  //图例
+  legend: {
+    
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: data.category
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'line',
+      stack: '总量',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      itemStyle:{
+        color: 'rgba(84,112,198,1)'
+      },
+      lineStyle:{
+        color: 'rgba(84,112,198,1)'
+      },
+      areaStyle:{
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [{
+              offset: 0, color: 'rgba(84,112,198,.4)' // 0% 处的颜色
+          },{
+              offset: 1, color: 'rgba(84,112,198,.1)' // 100% 处的颜色
+          }],
+          globalCoord: false // 缺省为 false
+        },
+        opacity: 1,
+      },
+      data: data.value,
+    },
+    {
+      name: '流光动效',
+      type: 'lines',
+      coordinateSystem: 'cartesian2d',
+      polyline: true,
+      //线特效的配置
+      effect: {
+        show: true,
+        period: 3, //特效动画的时间，单位为 s。
+        trailLength: 0.3, //特效尾迹的长度。取从 0 到 1 的值，数值越大尾迹越长。
+        color: 'rgba(84,112,198,1)',
+        symbolSize: 8
+      },
+      label: {
+        show: false,
+      },
+      lineStyle: {
+        color: 'rgba(0,0,0,0)',
+      },
+      tooltip: {
+        show: false
+      },
+      data: [{
+        coords: datacoords
+      }]
+    }
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

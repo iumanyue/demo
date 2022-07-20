@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">柱图显示上升下降对比</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+
+var dataValue = [132, 324, 327, 452, 365, 145, 326];//当前数据
+var dataChange = [7.2, -2.6, 0.3, -3.7, -5.4, -0.5, 3.4];//对比变化数据
+
+//定义两个上下箭头的矢量路径
+var up = 'path://M286.031,265l-16.025,3L300,223l29.994,45-16.041-3-13.961,69Z';
+var down = 'path://M216.969,292l16.025-3L203,334l-29.994-45,16.041,3,13.961-69Z';
+
+//遍历dataChange里面元素的正负定义一个矢量路径的数组
+var path = [];
+for(var i = 0; i < dataChange.length; i++){
+  dataChange[i] >= 0 ? (path[i] = up) : (path[i] = down)
+}
+
+var option = {
+  // 标题
+  title: { 
+    text: '柱图显示上升下降对比',
+  },
+  //图例
+  legend: {
+
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow',
+    },
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      data: dataValue,
+    },
+    {
+      name: "同期对比",
+      type: 'pictorialBar',
+      symbol: function(data,params){
+        return path[params.dataIndex]
+      },
+      symbolSize: [15, 30],
+      symbolOffset: [0, -40],
+      color: '#f90',
+      symbolPosition: 'end',
+      label: {
+        show: true,
+        position: "top",
+        formatter: function(params){
+          return dataChange[params.dataIndex]
+        },
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#f90'
+      },
+      tooltip: {
+        show: false,
+      },
+      data: dataValue
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize', function () {
+  myChart.resize();
+})
+
+</script>
+
+
+
+
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body{
+  overflow: scroll;
+}
+</style>
+</head>
+<body>
+<div class="banner">ECharts组件库</div>
+<div class="wrapper">
+  <!-- 筛选 -->
+  <div class="filter">
+    <div class="filter-item">
+      <div class="filter-hd is-less" style="line-height: 78px;">图表：</div>
+      <div class="filter-bd">
+        <ul class="filter-key-list-icon">
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-bar.svg" alt=""></div>
+            <div class="list-name">柱状图</div>
+          </li>
+          <li data-filter=".line">
+            <div class="list-icon"><img src="images/chart-line.svg" alt=""></div>
+            <div class="list-name">折线图</div>
+          </li>
+          <li data-filter=".pie">
+            <div class="list-icon"><img src="images/chart-pie.svg" alt=""></div>
+            <div class="list-name">饼图</div>
+          </li>
+          <li data-filter=".map">
+            <div class="list-icon"><img src="images/chart-map.svg" alt=""></div>
+            <div class="list-name">地图</div>
+          </li>
+          <li data-filter=".lines">
+            <div class="list-icon"><img src="images/chart-lines.svg" alt=""></div>
+            <div class="list-name">线图</div>
+          </li>
+          <li data-filter=".radar">
+            <div class="list-icon"><img src="images/chart-radar.svg" alt=""></div>
+            <div class="list-name">雷达图</div>
+          </li>
+          <li data-filter=".funnel">
+            <div class="list-icon"><img src="images/chart-funnel.svg" alt=""></div>
+            <div class="list-name">漏斗图</div>
+          </li>
+          <li data-filter=".gauge">
+            <div class="list-icon"><img src="images/chart-gauge.svg" alt=""></div>
+            <div class="list-name">仪表盘</div>
+          </li>
+          <li data-filter=".water">
+            <div class="list-icon"><img src="images/chart-gauge.svg" alt=""></div>
+            <div class="list-name">水球图</div>
+          </li>
+          <li data-filter=".module">
+            <div class="list-icon"><img src="images/chart-scatter.svg" alt=""></div>
+            <div class="list-name">组件</div>
+          </li>
+          <!-- 以下类型暂无数据 -->
+          <!-- 
+          <li data-filter=".scatter">
+            <div class="list-icon"><img src="images/chart-scatter.svg" alt=""></div>
+            <div class="list-name">散点图</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-kline.svg" alt=""></div>
+            <div class="list-name">k线图</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-boxline.svg" alt=""></div>
+            <div class="list-name">箱线图</div>
+          </li>
+          <li data-filter=".bar"> 
+            <div class="list-icon"><img src="images/chart-heatmap.svg" alt=""></div>
+            <div class="list-name">热力图</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-graph.svg" alt=""></div>
+            <div class="list-name">关系图</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-treemap.svg" alt=""></div>
+            <div class="list-name">矩形树图</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-parallel.svg" alt=""></div>
+            <div class="list-name">平行坐标</div>
+          </li>
+          <li data-filter=".bar">
+            <div class="list-icon"><img src="images/chart-sankey.svg" alt=""></div>
+            <div class="list-name">桑基图</div>
+          </li>
+           -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- 列表 -->
+  <div class="main-show-box">
+    <div class="main-show-list">
+      <!-- 
+       // 结构
+      <div class="list-item mix bar">
+        <a href="#">
+          <div class="list-pic">
+            <img src="images/pic/chart02.jpg" class="list-img" alt="">
+          </div>
+          <div class="list-con">
+            <div class="list-name">柱状图</div>
+          </div>
+        </a>
+      </div>
+      -->
+    </div>
+  </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<!-- 生成列表 -->
+<script>
+var data = [
+  {
+    name: '基础状柱图',
+    imgUrl: 'bar01.png',
+    href: 'bar01',
+    type: 'bar',
+  },
+  {
+    name: '定时自动刷新动画',
+    imgUrl: 'bar02.png',
+    href: 'bar02',
+    type: 'bar',
+  },
+  {
+    name: '堆叠柱图',
+    imgUrl: 'bar03.png',
+    href: 'bar03',
+    type: 'bar',
+  },
+  {
+    name: '自动切换高亮',
+    imgUrl: 'bar04.png',
+    href: 'bar04',
+    type: 'bar',
+  },
+  {
+    name: '柱图线性渐变色',
+    imgUrl: 'bar05.png',
+    href: 'bar05',
+    type: 'bar',
+  },
+  {
+    name: '柱图径向渐变色',
+    imgUrl: 'bar06.png',
+    href: 'bar06',
+    type: 'bar',
+  },
+  {
+    name: '柱图带背景色',
+    imgUrl: 'bar07.png',
+    href: 'bar07',
+    type: 'bar',
+  },
+  {
+    name: '多颜色柱图',
+    imgUrl: 'bar08.png',
+    href: 'bar08',
+    type: 'bar',
+  },
+  {
+    name: '多颜色柱图 - 显示图例',
+    imgUrl: 'bar09.png',
+    href: 'bar09',
+    type: 'bar',
+  },
+  {
+    name: '视觉映射实现颜色区分数据',
+    imgUrl: 'bar10.png',
+    href: 'bar10',
+    type: 'bar',
+  },
+  {
+    name: '利用label背景图来实现顶部的修饰图',
+    imgUrl: 'bar11.png',
+    href: 'bar11',
+    type: 'bar',
+  },
+  {
+    name: '利用label背景图来实现顶部的修饰图 - 非图片',
+    imgUrl: 'bar12.png',
+    href: 'bar12',
+    type: 'bar',
+  },
+  {
+    name: '利用坐标轴顶部显示数据',
+    imgUrl: 'bar13.png',
+    href: 'bar13',
+    type: 'bar',
+  },
+  {
+    name: '类目轴标签文字自动换行',
+    imgUrl: 'bar14.png',
+    href: 'bar14',
+    type: 'bar',
+  },
+  {
+    name: '类目轴标签纵向显示',
+    imgUrl: 'bar15.png',
+    href: 'chart15',
+    type: 'bar',
+  },
+  {
+    name: '类目轴标签文字超长显示省略号',
+    imgUrl: 'bar16.png',
+    href: 'bar16',
+    type: 'bar',
+  },
+  {
+    name: '自动排序 - 不同颜色',
+    imgUrl: 'bar17.png',
+    href: 'bar17',
+    type: 'bar',
+  },
+  {
+    name: '虚拟数据实现渐变色叠加高光',
+    imgUrl: 'bar18.png',
+    href: 'bar18',
+    type: 'bar',
+  },
+  {
+    name: '环比柱图',
+    imgUrl: 'bar19.png',
+    href: 'bar19',
+    type: 'bar',
+  },
+  {
+    name: 'label - 自定义背景图',
+    imgUrl: 'bar20.png',
+    href: 'bar20',
+    type: 'bar',
+  },
+  {
+    name: '柱图实现排行榜',
+    imgUrl: 'bar21.png',
+    href: 'bar21',
+    type: 'bar',
+  },
+  {
+    name: '柱图实现排行榜 - js实现排序功能',
+    imgUrl: 'bar22.png',
+    href: 'bar22',
+    type: 'bar',
+  },
+  {
+    name: '柱图显示上升下降对比',
+    imgUrl: 'bar23.png',
+    href: 'bar23',
+    type: 'bar',
+  },
+  {
+    name: '双向柱图',
+    imgUrl: 'bar24.png',
+    href: 'bar24',
+    type: 'bar',
+  },
+  {
+    name: '柱图横向列表',
+    imgUrl: 'bar25.png',
+    href: 'bar25',
+    type: 'bar',
+  },
+  {
+    name: '伪立体柱图',
+    imgUrl: 'bar26.png',
+    href: 'bar26',
+    type: 'bar',
+  },
+  {
+    name: '伪立体柱图',
+    imgUrl: 'bar27.png',
+    href: 'bar27',
+    type: 'bar',
+  },
+  {
+    name: '象形柱图',
+    imgUrl: 'bar28.png',
+    href: 'bar28',
+    type: 'bar',
+  },
+  {
+    name: '象形柱图',
+    imgUrl: 'bar30.png',
+    href: 'bar30',
+    type: 'bar',
+  },
+  {
+    name: '象形柱图',
+    imgUrl: 'bar31.png',
+    href: 'bar31',
+    type: 'bar',
+  },
+  {
+    name: '柱图-负值显示成红色',
+    imgUrl: 'bar32.png',
+    href: 'bar32',
+    type: 'bar',
+  },
+  {
+    name: '标签左对齐',
+    imgUrl: 'bar33.png',
+    href: 'bar33',
+    type: 'bar module',
+  },
+  {
+    name: '标签显示图标左对齐',
+    imgUrl: 'bar34.png',
+    href: 'bar34',
+    type: 'bar module',
+  },
+  {
+    name: '状柱图添加流光特效',
+    imgUrl: 'bar35.png',
+    href: 'bar35',
+    type: 'bar',
+  },
+  {
+    name: '折线图 - 自定义label',
+    imgUrl: 'line01.png',
+    href: 'line01',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 平滑曲线',
+    imgUrl: 'line02.png',
+    href: 'line02',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 改变起始点位置',
+    imgUrl: 'line03.png',
+    href: 'line03',
+    type: 'line',
+  },
+  {
+    name: '堆叠折线图',
+    imgUrl: 'line04.png',
+    href: 'line04',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 标记标线',
+    imgUrl: 'line05.png',
+    href: 'line05',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 纯色填充区域',
+    imgUrl: 'line06.png',
+    href: 'line06',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 渐变色填充区域',
+    imgUrl: 'line07.png',
+    href: 'line07',
+    type: 'line',
+  },
+  {
+    name: '折线图 - 视觉映射',
+    imgUrl: 'line08.png',
+    href: 'line08',
+    type: 'line',
+  },
+  {
+    name: '柱图 + 折线图',
+    imgUrl: 'line09.png',
+    href: 'line09',
+    type: 'line',
+  },
+  {
+    name: '当前+预测',
+    imgUrl: 'line10.png',
+    href: 'line10',
+    type: 'line',
+  },
+  {
+    name: '折线图标记样式',
+    imgUrl: 'line11.png',
+    href: 'line11',
+    type: 'line',
+  },
+  {
+    name: '结合散点图实现动画效果',
+    imgUrl: 'line12.png',
+    href: 'line12',
+    type: 'line',
+  },
+  {
+    name: '折线图流光特效',
+    imgUrl: 'line13.png',
+    href: 'line13',
+    type: 'line',
+  },
+  
+  {
+    name: '基础饼图',
+    imgUrl: 'pie01.png',
+    href: 'pie01',
+    type: 'pie',
+  },
+  {
+    name: '饼图-自动切换',
+    imgUrl: 'pie02.png',
+    href: 'pie02',
+    type: 'pie',
+  },
+  {
+    name: '饼图-空心饼图',
+    imgUrl: 'pie03.png',
+    href: 'pie03',
+    type: 'pie',
+  },
+  {
+    name: '饼图-南丁格尔图-弧度不同',
+    imgUrl: 'pie04.png',
+    href: 'pie04',
+    type: 'pie',
+  },
+  {
+    name: '饼图-南丁格尔图-弧度相同',
+    imgUrl: 'pie05.png',
+    href: 'pie05',
+    type: 'pie',
+  },
+  {
+    name: '饼图-自定义标签',
+    imgUrl: 'pie06.png',
+    href: 'pie06',
+    type: 'pie module',
+  },
+  {
+    name: '饼图-自定义标签',
+    imgUrl: 'pie07.png',
+    href: 'pie07',
+    type: 'pie module',
+  },
+  {
+    name: '饼图-滑入显示标签',
+    imgUrl: 'pie08.png',
+    href: 'pie08',
+    type: 'pie',
+  },
+  {
+    name: '饼图-滑入显示自定义标签',
+    imgUrl: 'pie09.png',
+    href: 'pie09',
+    type: 'pie',
+  },
+  {
+    name: '饼图-双层饼图显示一组数据',
+    imgUrl: 'pie10.png',
+    href: 'pi10',
+    type: 'pie',
+  },
+  {
+    name: '饼图-内环叠加圆环',
+    imgUrl: 'pie11.png',
+    href: 'pie11',
+    type: 'pie',
+  },
+  {
+    name: '饼图-外环叠加圆环',
+    imgUrl: 'pie12.png',
+    href: 'pie12',
+    type: 'pie',
+  },
+  {
+    name: '饼图-完成进度',
+    imgUrl: 'pie13.png',
+    href: 'pie13',
+    type: 'pie',
+  },
+  {
+    name: '饼图-完成进度标签换行',
+    imgUrl: 'pie14.png',
+    href: 'pie14',
+    type: 'pie',
+  },
+  {
+    name: '饼图-完成进度',
+    imgUrl: 'pie15.png',
+    href: 'pie15',
+    type: 'pie',
+  },
+  {
+    name: '饼图-半圆南丁格尔图',
+    imgUrl: 'pie16.png',
+    href: 'pie16',
+    type: 'pie',
+  },
+  {
+    name: '饼图-自定义图例样式及内容',
+    imgUrl: 'pie17.png',
+    href: 'pie17',
+    type: 'pie module',
+  },
+  {
+    name: '饼图-自定义label',
+    imgUrl: 'pie18.png',
+    href: 'pie18',
+    type: 'pie',
+  },
+  {
+    name: '饼图-多层嵌套饼图',
+    imgUrl: 'pie19.png',
+    href: 'pie19',
+    type: 'pie',
+  },
+  {
+    name: '饼图-渐变色带边框间隔',
+    imgUrl: 'pie20.png',
+    href: 'pie20',
+    type: 'pie',
+  },
+  {
+    name: '饼图-图片填充',
+    imgUrl: 'pie21.png',
+    href: 'pie21',
+    type: 'pie',
+  },
+  {
+    name: '饼图-选中模式重点突出某一项',
+    imgUrl: 'pie22.png',
+    href: 'pie22',
+    type: 'pie',
+  },
+  {
+    name: '饼图-标签文字对齐',
+    imgUrl: 'pie23.png',
+    href: 'pie23',
+    type: 'pie',
+  },
+  {
+    name: '饼图-标线末端对齐',
+    imgUrl: 'pie24.png',
+    href: 'pie24',
+    type: 'pie',
+  },
+  {
+    name: '饼图-自定义label',
+    imgUrl: 'pie25.png',
+    href: 'pie25',
+    type: 'pie',
+  },
+  {
+    name: '人员在岗占比',
+    imgUrl: 'pie26.png',
+    href: 'pie26',
+    type: 'pie',
+  },
+  {
+    name: '虚拟数据实现间隔',
+    imgUrl: 'pie27.png',
+    href: 'pie27',
+    type: 'pie',
+  },
+  {
+    name: '边框实现间隔 - 要求背景图和间隔相同颜色',
+    imgUrl: 'pie28.png',
+    href: 'pie28',
+    type: 'pie',
+  },
+  {
+    name: '圆环柱图',
+    imgUrl: 'pie29.png',
+    href: 'pie29',
+    type: 'pie bar',
+  },
+  {
+    name: '圆环柱图',
+    imgUrl: 'pie30.png',
+    href: 'pie30',
+    type: 'pie bar',
+  },
+  {
+    name: '地图-热力图',
+    imgUrl: 'map01.png',
+    href: 'map01',
+    type: 'map',
+  },
+  {
+    name: '地图-散点图',
+    imgUrl: 'map02.png',
+    href: 'map02',
+    type: 'map',
+  },
+  {
+    name: '地图-热力图结合散点图',
+    imgUrl: 'map03.png',
+    href: 'map03',
+    type: 'map',
+  },
+  {
+    name: '地图-热力图结合散点图',
+    imgUrl: 'map04.png',
+    href: 'map04',
+    type: 'map',
+  },
+  {
+    name: '地图-热力图结合散点图(涟漪动效)',
+    imgUrl: 'map05.png',
+    href: 'map05',
+    type: 'map',
+  },
+  {
+    name: '地图-城市',
+    imgUrl: 'map06.png',
+    href: 'map06',
+    type: 'map',
+  },
+  {
+    name: '地图-线路图',
+    imgUrl: 'map07.png',
+    href: 'map07',
+    type: 'map lines',
+  },
+  // {
+  //   name: '地图-迁徙图',
+  //   imgUrl: 'img94.png',
+  //   href: 'chart94',
+  //   type: 'map lines',
+  // },
+  // {
+  //   name: '地图-迁徙图',
+  //   imgUrl: 'img95.png',
+  //   href: 'chart95',
+  //   type: 'map lines',
+  // },
+  {
+    name: '省份地图',
+    imgUrl: 'map08.png',
+    href: 'map08',
+    type: 'map',
+  },
+  {
+    name: '地图带投影仿3D效果',
+    imgUrl: 'map09.png',
+    href: 'map09',
+    type: 'map',
+  },
+   {
+    name: '地图结合柱图',
+    imgUrl: 'map10.png',
+    href: 'map10',
+    type: 'bar map',
+  },
+  {
+    name: '雷达图',
+    imgUrl: 'radar01.png',
+    href: 'radar01',
+    type: 'radar',
+  },
+  {
+    name: '雷达图',
+    imgUrl: 'radar02.png',
+    href: 'radar02',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-纯色填充区域',
+    imgUrl: 'radar03.png',
+    href: 'radar03',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-线向渐变色填充区域',
+    imgUrl: 'radar04.png',
+    href: 'radar04',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-径向渐变渐变色填充区域',
+    imgUrl: 'radar05.png',
+    href: 'radar05',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-图片实现标记',
+    imgUrl: 'radar06.png',
+    href: 'radar06',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-轴线样式',
+    imgUrl: 'radar07.png',
+    href: 'radar07',
+    type: 'radar',
+  },
+  {
+    name: '雷达图-结合极坐标系实现刻度',
+    imgUrl: 'radar08.png',
+    href: 'radar08',
+    type: 'radar',
+  },
+  {
+    name: '漏斗图',
+    imgUrl: 'funnel01.png',
+    href: 'funnel01',
+    type: 'funnel',
+  },
+  {
+    name: '漏斗图',
+    imgUrl: 'funnel02.png',
+    href: 'funnel02',
+    type: 'funnel',
+  },
+
+  {
+    name: '业务指标完成率',
+    imgUrl: 'gauge01.png',
+    href: 'gauge01',
+    type: 'gauge',
+  },
+  {
+    name: '业务指标完成率',
+    imgUrl: 'gauge02.png',
+    href: 'gauge02',
+    type: 'gauge',
+  },
+  {
+    name: '业务指标完成率',
+    imgUrl: 'gauge03.png',
+    href: 'gauge03',
+    type: 'gauge',
+  },
+  {
+    name: '仪表盘',
+    imgUrl: 'gauge04.png',
+    href: 'gauge04',
+    type: 'gauge',
+  },
+  {
+    name: '仪表盘',
+    imgUrl: 'gauge05.png',
+    href: 'gauge05',
+    type: 'gauge',
+  },
+  {
+    name: '自定义label + 显示最大最小值',
+    imgUrl: 'gauge06.png',
+    href: 'gauge06',
+    type: 'gauge',
+  },
+  {
+    name: '水球图',
+    imgUrl: 'water01.png',
+    href: 'water01',
+    type: 'water',
+  },
+  {
+    name: '水球图',
+    imgUrl: 'water02.png',
+    href: 'water02',
+    type: 'water',
+  },
+  {
+    name: '水球图',
+    imgUrl: 'water03.png',
+    href: 'water03',
+    type: 'water',
+  },
+ 
+]
+// 生成数据列表
+var str = "";
+for (var i = 0; i < data.length; i++){
+  str += '<div class="list-item mix ' +  data[i].type + '"><a href="page/' + data[i].href + '.html">';
+  str += '<div class="list-pic"><img src="images/pic/' + data[i].imgUrl + '" class="list-img" alt=""></div>'
+  str += '<div class="list-con"><div class="list-name">' + data[i].name + '</div></div>'
+  str += '</a></div>'
+}
+$('.main-show-list').html(str);
+</script>
+<!-- 筛选 -->
+<script src="js/mixitup.min.js"></script>
+<script>
+$('.filter-key-list-icon li').on('click',function(){
+  $(this).addClass('is-active').siblings().removeClass('is-active');
+})
+var mixer = mixitup('.main-show-list');
+</script>
+
+</body>
+</html>

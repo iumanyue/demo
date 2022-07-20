@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">基础柱状图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var dataCategory = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+var data = [320, 302, 301, 334, 390, 330, 320, 302, 301, 334, 390, 330, 320, 302, 301, 334, 390, 330, 320, 302, 301, 334, 390, 330];
+
+var option = {
+  // 标题
+  title: { 
+    text: '基础状柱图',
+  },
+  //图例
+  legend: {
+    
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow',
+    },
+  },
+  toolbox: {
+    show: false,
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    data: dataCategory,
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  dataZoom:{
+    show: false,
+    // xAxisIndex: [0, 1],
+    type: 'slider',
+    bottom: 0,
+    start: 0,
+    end: 100
+  },
+  brush: {
+    throttleType: 'debounce',
+    throttleDelay: 500,
+    transformable: false,
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      itemStyle: {
+        barBorderRadius: [2, 2, 0, 0]
+      },
+      data: data,
+    },
+  ],
+};
+myChart.setOption(option);
+
+// 事件
+myChart.dispatchAction({
+  type: 'takeGlobalCursor',
+      // 如果想变为“可刷选状态”，必须设置。不设置则会关闭“可刷选状态”。
+  key: 'brush',
+
+  brushOption: {
+    // 参见 brush 组件的 brushType。如果设置为 false 则关闭“可刷选状态”。
+    brushType: 'lineX',                    
+    // 参见 brush 组件的 brushMode。如果不设置，则取 brush 组件的 brushMode 设置
+    brushMode: 'single'              
+  }
+});
+flag = true;
+
+myChart.on('brushSelected',function (params) {
+  
+  var selectIndex = params.batch[0].selected[0].dataIndex;//选中的x轴index
+
+  if(selectIndex.length > 0){
+    var indexStart = selectIndex[0];//选中第一项index
+    var indexEnd = selectIndex[selectIndex.length-1];//选中最后项index
+
+    console.log(indexStart + ' ' + indexEnd);
+
+    var dataCategoryNew = dataCategory.splice(indexStart,indexEnd+1);//新数值轴
+    var dataNew = data.splice(indexStart,indexEnd+1);//新数值
+    console.log(dataCategoryNew);
+
+    option.xAxis.data = dataCategoryNew;
+    option.series[0].data = dataNew;
+
+    // myChart.dispose();//销毁旧的实例
+
+    myChart.setOption(option,true);
+  }
+  
+
+  // alert('asd');
+})
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

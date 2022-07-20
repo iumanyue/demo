@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">饼图-滑入显示数据</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 饼图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [
+  {value: 335, name: '直接访问'},
+  {value: 110, name: '邮件营销'},
+  {value: 274, name: '联盟广告'},
+  {value: 235, name: '视频广告'},
+  {value: 400, name: '搜索引擎'}
+];
+var option = {
+  // 标题
+  title: { 
+    text: '饼图-滑入显示数据(样式)',
+  },
+  //图例
+  legend: {
+    orient: 'vertical',
+    top: 'center',
+    right: '5%',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  // 数据
+  series: [{
+    type: 'pie',
+    center: ['40%', '50%'],
+    radius: ['40%', '70%'],
+    label : {
+      show: false,
+      position : 'center',
+      fontSize: 24,
+      formatter: ['{textName|{b}}', '{textNum|{d}%}'].join('\n'),
+      rich: {
+        textName: {
+          color: '#666',
+          fontSize: 14,
+          height: 16
+        },
+        textNum: {
+          color: '#f60',
+          fontSize: 20,
+          height: 36
+        },
+      },
+    },
+    emphasis:{
+      label:{
+        show: true,
+      }
+    },
+    avoidLabelOverlap: false,//允许标签重叠
+    data: data,
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

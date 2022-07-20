@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">普通折线图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANgAAABaCAYAAADaWJg+AAAABGdBTUEAALGPC/xhBQAABHhJREFUeAHt2s9qE2EUhvHzTUpWuQE3XbTLgCuvoIvSSuvGRVERCnZhEUTqbYjQRS1IRURBpKCLVCxZ9CKELHXRa+gqJjOeL9MW25A06eRtInkC1fybM+mv30Mm0wa7fDnMqtZMN/zuRf+aNcsql5/CbQQQOBMIJ37t2L/qVk72bCk0zh6J/4fzG42sbL/T15bZpkeVnN/PFQQQGFAgpF7Urs0lW1YNzbhRHliM61f7h99eGHAST0MAgd4CRzZfWo6R5e9U8Z2LuHpz8QgCwwksdI4GfZtg+WeunxwWDifIsxHoL+CHi+XkdpKf0OAzV38sHkVgWAFvyk8WxkPEeLaQCwIIjF5gMQbmp+K5IICAQGDWA+P3XAJYRiLgAlklP4sIBgIISAQITMLKUARyAQJjJSAgFCAwIS6jESAw1gACQgECE+IyGgECYw0gIBQgMCEuoxEgMNYAAkIBAhPiMhoBAmMNICAUIDAhLqMRIDDWAAJCAQIT4jIaAQJjDSAgFCAwIS6jESAw1gACQgECE+IyGgECYw0gIBQgMCEuoxEgMNYAAkIBAhPiMhoBAmMNICAUIDAhLqMRIDDWAAJCAQIT4jIaAQJjDSAgFCAwIS6jESAw1gACQgECE+IyGgECYw0gIBQgMCEuoxEgMNYAAkIBAhPiMhoBAmMNICAUIDAhLqMRIDDWAAJCAQIT4jIaAQJjDSAgFCAwIS6jESAw1gACQgECE+IyGgECYw0gIBQgMCEuoxEgMNYAAkIBAhPiMhoBAmMNICAUIDAhLqMRIDDWAAJCAQIT4jIaAQJjDSAgFCAwIS6jESAw1gACQgECE+IyGgECYw0gIBQgMCEuoxEgMNYAAkIBAhPiMhoBAmMNICAUIDAhLqMRIDDWAAJCAQIT4jIaAQJjDSAgFPDAwolwPqMRmGKBcBLfwY6nWIBvHQGlwHEMrK7cA7MRmGKBemLlZM8PE9MpRuBbR0Ag4E15W4kthYYF2xXsgZEITK9AbMrbioeIZnPJlv971LnOPwggUFTg6LQpywOrhqbNl5YthB0OF4vasv30CvhhYWwothSb8kvowjjMqtZMN/z+Rf+aNcsqXc/hDgQQOBXo/Jornomvd85nxI9c/1y6A/vnQa7eoMBB+6Wl2auR7DGEbVstvRjJLIYUEiCwQnwj3rjWfm5Ztl1oahLe2ErpWaEZbDwyAQIbGeWIBh20Ny2zHQ/tGj+b8NZWk6f+OSAb0athTEGBa/wQC+6Rza8WqLX8M7DHMkxkIby3leQJcV3Ne5PPILCb1B5mX99b69YO7/wkU36mt9+2IXz0uNY9Lv5goJ/TGB4jsDGgD7zLWuuRZeGDR1bqvU347IeFjz2udu/n8Mi4BAhsXPKD7rfWWvPDxU9+uDjTtUmwfT+h8YC4umQm5o6rDz8m5qVO6QtZnfliIVnziP5cEAj2zSqlh8R1QWXibvAONnE/kh4v6CC7Z2m674eLZf/zgJrdKt23O5ei67EpdyOAwCACteyu1VpfreGRcfkvBP4CyQOS5hy9JsIAAAAASUVORK5CYII=';
+var option = {
+  // 标题
+  title: { 
+    text: '普通折线图 - 标签自定义背景图',
+  },
+  //图例
+  legend: {
+    data: ['直接访问', '搜索引擎'],
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'line',
+      label: {
+        show: true,
+        color: '#fff',
+        position: 'top',
+        backgroundColor: {
+          image: icon,
+        },
+        padding: [5, 6, 7, 6],
+      },
+      smooth: true,//平滑曲线
+      data: [320, 302, 401, 534, 390, 330, 320],
+    },
+    {
+      name: '搜索引擎',
+      type: 'line',
+      label: {
+        show: true,
+        color: '#fff',
+        position: 'top',
+        backgroundColor: {
+          image: icon,
+        },
+        padding: [5, 6, 7, 6],
+      },
+      smooth: true,//平滑曲线
+      data: [520, 632, 501, 434, 790, 530, 820],
+    },
+  ],
+};
+myChart.setOption(option);
+
+// 定时自动刷新动画
+setInterval(function(){
+  myChart.setOption({
+    legend: {
+      selected: {
+        '直接访问': false,
+        '搜索引擎': false
+      }
+    }
+  })
+  myChart.setOption({
+    legend: {
+      selected: {
+        '直接访问': true,
+        '搜索引擎': true
+      }
+    }
+  })
+},10000)
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

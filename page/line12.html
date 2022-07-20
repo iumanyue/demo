@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">折线图标记样式</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+       <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [320, 302, 401, 534, 390, 330, 320];
+var option = {
+  // 标题
+  title: { 
+    text: '折线图结合散点气泡图',
+  },
+  //图例
+  legend: {
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'line',
+      label: {
+        show: false,
+      },
+      symbol: 'none',
+      lineStyle:{
+        color: '#3fb1e3'
+      },
+      data: data,
+    },
+    {
+      name: "",
+      type: "effectScatter",
+      symbolSize: [6, 6],
+      rippleEffect: {
+        period: 1,
+        scale: 8,
+        brushType: 'fill'
+      },
+      itemStyle: {
+        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+          offset: 0,
+          color: 'rgba(63,177,227,1)'
+        }, {
+          offset: 1,
+          color: 'rgba(63,177,227,.2)'
+        }])
+      },
+      markPoint: {
+        label: {
+          textStyle: {
+            color: '#fff'
+          }
+        },
+        data: [{
+          type: 'max',
+          name: '最大值',
+        }, {
+          type: 'min',
+          name: '最小值'
+        }]
+      },
+      tooltip: {
+        show: false
+      },
+      data: data,
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

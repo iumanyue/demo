@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">饼图-纹理填充-带间隔</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 饼图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+
+var piePatternSrc = 'data:image/jpg;base64,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';
+var piePatternImg = new Image();
+piePatternImg.src = piePatternSrc;
+
+var data = [
+  {value: 335, name: '直接访问'},
+  {value: 110, name: '邮件营销'},
+  {value: 274, name: '联盟广告'},
+  {value: 235, name: '视频广告'},
+  {value: 400, name: '搜索引擎'}
+];
+
+var option = {
+  // 标题
+  title: { 
+    text: '纹理填充-带间隔',
+  },
+  //图例
+  legend: {
+    orient: 'vertical',
+    top: 'center',
+    right: '5%',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  // 数据
+  series: [{
+    type: 'pie',
+    center: ['40%', '50%'],
+    radius: ['40%', '70%'],
+    label: {
+      // position: 'inside',
+      formatter: '{c}',
+    },
+    itemStyle:{
+      borderWidth: 10,
+      borderColor: '#fff',
+      opacity: 1,
+      color: {
+        image: piePatternImg,
+        repeat: 'repeat'
+      },
+    },
+    data: data,
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

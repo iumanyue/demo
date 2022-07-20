@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">雷达图 - 结合极坐标系实现刻度</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 雷达图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var icon = 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAAAXNSR0IArs4c6QAABdRJREFUWAntmM+LHEUUx1//mt3Z7MY1ySZByBoEURAVMQiCBz0EZPFHPKygeIgXPfsf6E3PngQvHry4BwUhHoT1x8WDaAgKyoo5KEmUJdnd7K/Mj+7286qnZ7q6q2dmZz14sJbZ6qp69epbr96vKpH/ePEOiy/9RAJ4BLIgvvxJPS3KM5ZZSaRJ/bTEnifppOtMBBBQDZnirwUcBTesdAEXyh3ZhfqitA4K9kAADbBQ5qQr0TBMtWMhUo1kR56T/XGBjgUw/QoZ7AJsD6n9OyWG37b3OpIdUUYCTC8BalPmgTiSdsRaruEdWZbdYdIcumj6uczIvhx1ce73tQAeyVw7kWkWaqCRPgfZxSrajQiZx/yGlQgpXpCtOpC1ANG3JnzvGsJ7tityOk5kHia1hpL60vJj2YgCuQGvtpNfBwN6VTZdIJ0AjTGIHHMxuxPLdOjLYpLK3a7xur7Uk8RP5a8olWtsJ6nQTXHUL8p2ub8CEHAB+nYcS/XLxK0WEo3k/mESK88pt/1E9jj/tekIqZXLAlJ8xjacCgjmzLrAoWMnvEgePAw4xZP4MuOF8hDmqypklw05mqa2MVoAjTtxTfRlDl26z+Y2ectLJQq78gAaGVpc9NRW5Eixzzri9GP0Kir5ulgizuIRFNhm1uMCg2Ps+Vmaj/N9mrgR0b6JFf+MNFbp/6W4YPHbD2QrTOXXYh+nhwLIuvd2pqd9gDBT9CctYhqdRM6y2Klyf699wffkFebWO/BUvmP8fbjXuZu1hi8bJf5b3ss4OMrgiFcci2Cx6EwFtE4MPHmD3V0cCk4JPXmSVd5FLtbR6ZAWAJzJvgr/OybGm44BwEJnTtoRDCOxlVbH0KHzuJmlnG5UzUYWUZG3XHT4GzWWWWsMNWPj5nQHADUKlIrT16VEDF9eK5GO0zyHFB9zEaJGVZ+6gi5TDECDthxr8YYAmSkzROeegH5YhClP6beZe77fKHwkRKNCM/800SmT4NfOUFWRqM7EYB7NORy49mrmOk4PERhsGcD1rGEt2KoeuY6jGCcsugM0kPwRdqhJrlWMC9Oko1jWM6FlAIsDvW8ih3vMIz85TCEmO6eXVWxOD2vgZiqLpg135oHhrDsXGKMTSW1CVsloQBIjLxv4VtbOpLRcGoRL2hG8TLWg6D9We8frAchlJ2XsWOtMdlIGIDvTi421A802YFjZbRLLDyzyt3OhEZ1Y6yUXSeBX0yzOyeAZ6JlXBcNgOQSpUmi2/KHZlGu1uj5PvmTOb67h0Cuto/F4OZPqAOC8nYcpoyiUmy6G9H2PLn40LkjM8wqb+sDFiyxJ4WxZY83B9XQA8JuqBBHydkLGYU0eND7DMbxH89agy/5iAx3C4qfE83cAwQ2hWnxfrlcMpCAsy/eQTWuEsBPJQGbaHXm4yrrf08BwnsLHnQPwKeoIYLcA9BMU3yK5WqtPE2lNTckVzAGyXlFbeIl0q/caUc7xdiCzAXIrQwp/cKdYzHmU6jbHvUrfar4MIEcWvaNMNdHJTj6rN4WLfQ5OewZHTIMcLCbp2u2R9iu9kXHhqZVEn/AAH14sVwFnr9VEDXh1KLKxAJqBy2ZSxXGHgVxFH64XJ0/yrZIjyK81XAa4L7eL0lP+lg7mC5q7yQ1uduXwA0G7K8fTQO7Ve0VOP27N/Xg3nJPf8ReWlMz8JuCer2bdToA6wTx57DjyNB2MxSfM3IMFnozHAMox7eOkrzmlpvxm0fMlua2f5VILUAkNyA65WjnTKHLhxtfp8rpAltKNpRGGEnRxL2yiQ4TYi7L7RlViOQ/V+Rdsw8iHtB4KUAnMca8bSdY+byjdhKV/OaqbPxKgTsRt+PIFB7FTzbDrGI/obxPctr03s3A2jHYsgDkDI81NgDouWDnN0LqLG5kH2JLj2aNm4oEA5jzM+00Tj+nxG/WoqaD0CXiD+DqGxPI18noigPlkrTl+jwu/Poz4BLdAztKpqdICv0M+oCv//8thJfAPjayv1yqfqa0AAAAASUVORK5CYII='
+var option = {
+  color: ['#f60'],
+  // 标题
+  title: { 
+    text: '结合极坐标系实现刻度',
+  },
+  //图例
+  legend: {
+    
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  //雷达
+  radar: {
+    //雷达图的指示器，用来指定雷达图中的多个变量（维度）
+    indicator: [
+      { name: '销售部', max: 150 },
+      { name: '产品部', max: 150 },
+      { name: '综合部', max: 150 },
+      { name: '客服部', max: 150 },
+      { name: '财务部', max: 150 }
+    ],
+    nameGap: 10,
+    // 系列名称
+    name: {
+      lineHeight: 18,
+    },
+    splitNumber: 5,
+    center: ['50%', '55%'],//中心（圆心）坐标
+    radius: '80%',//半径
+  },
+  // 极坐标系
+  polar: {
+    center: ['50%', '55%'],//中心（圆心）坐标
+    radius: '80%',//半径
+  },
+  // 极坐标系的径向轴，默认为数值轴
+  radiusAxis: {
+    zlevel: 0,
+    min: 0,
+    max: 150,
+    splitNumber: 5,
+    axisLabel: {
+      textStyle: {
+        fontSize: 12,
+      }
+    },
+    axisTick: {
+      show: false
+    },
+    axisLine: {
+      show: false
+    },
+    splitLine: {
+      show: false
+    },
+    splitArea: {
+      show: false
+    },
+  },
+  // 极坐标系的角度轴
+  angleAxis: {
+    zlevel: 0,
+    axisTick: {
+      show: false
+    },
+    axisLabel: {
+      show: false
+    },
+    axisLine: {
+      show: false
+    },
+    splitLine: {
+      show: false
+    }
+  },
+  
+  // 数据
+  series: [{
+    name: '预算与开销',
+    type: 'radar',
+    data: [
+      {
+        symbol: icon,
+        symbolSize: 34,
+        value: [120, 100, 90, 47, 109],
+        name: '预算分配',
+        label: {
+          show: true,
+        },
+        lineStyle:{
+          type: 'dashed',
+        },
+        areaStyle: {
+          opacity: .2
+        }
+      }
+    ]
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">漏斗图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+
+<script id="chartCode">// 漏斗图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  color: ["#63C1B0","#FFA112","#276EEE"],
+  tooltip: {
+    trigger: 'item',
+  },
+  series: [{
+    name: '漏斗图',
+    type: 'funnel',
+    left: '10%',
+    top: 40,
+    bottom: 40,
+    width: '70%',
+    min: 0,// 指定的数据最小值
+    max: 100,// 指定的数据最大值
+    minSize: '0%',// 数据最小值 min 映射的宽度
+    maxSize: '100%',// 数据最大值 max 映射的宽度。
+    sort: 'ascending',// 数据排序，可选descending下降的,ascending 上升的，none，按data顺序
+    gap: 4,// 数据图形间距
+    // 文本标签
+    label: {
+      show: true,
+      position: 'right',
+      formatter: function (params) {
+        return '{labelName|' + params.name + '}' + '{labelText|' + params.value + '个}'
+      },
+      rich: {
+        labelName: {
+          color: '#666',
+          lineHeight: 20
+        },
+        labelText: {
+          color: '#333',
+          lineHeight: 20
+        },
+      },
+    },
+    // 标签的视觉引导线样式
+    labelLine: {
+      show: false,
+    },
+    // 图形样式
+    itemStyle: {
+      borderColor: '#fff',
+      borderWidth: 0
+    },
+    data: [
+      {
+        value: 90,
+        name: '工作规范',
+        label: {
+          formatter: function (params) {
+            return '{labelName|' + params.name + '：}' + '{labelText|' + 8888 + '个}'
+          },
+        },
+      },
+      {
+        value: 60,
+        name: '具体规章',
+        label: {
+          formatter: function (params) {
+            return '{labelName|' + params.name + '：}' + '{labelText|' + 888 + '个}'
+          },
+        },
+      },
+      {
+        value: 30,
+        name: '基本制度',
+        label: {
+          formatter: function (params) {
+            return '{labelName|' + params.name + '：}' + '{labelText|' + 88 + '个}'
+          },
+        },
+      }
+    ]
+  }]
+};
+myChart.setOption(option);
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+
+
+
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">标签左对齐</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  grid: {
+    left: 150,
+    bottom: 40,
+    right: 20,
+    containLabel: false, //设置 grid 区域不包含坐标轴的刻度标签
+  },
+  // 标题
+  title: { 
+    text: '基础状柱图',
+  },
+  //图例
+  legend: {
+    
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow',
+    },
+  },
+  // x轴
+  xAxis: {
+    type: 'value',
+  },
+  // y轴
+  yAxis: {
+    type: 'category',
+    axisLabel: {
+      margin: 130, //标签距离轴线距离
+      align: 'left', //设置左对齐
+    },
+    data: ['数据', '数据测试', '虚拟数据测试', '数据A', '数据B', '长度不同', '测试文字长度不同'],
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      itemStyle: {
+        barBorderRadius: [2, 2, 0, 0]
+      },
+      data: [320, 302, 301, 334, 390, 330, 320],
+    },
+  ],
+};
+myChart.setOption(option);
+
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

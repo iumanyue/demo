@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">类目轴标签文字超长显示省略号</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '类目轴标签文字超长显示省略号',
+  },
+  //图例
+  legend: {
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    axisLabel: {
+      //超过设定字数省略号
+      formatter: function (name) {
+        return (name.length > 4 ? (name.substr(0, 4) + "...") : name)
+      },
+    },
+    data: ['普通文字', '普通文字', '超长文字字段', '普通文字', '超长文字字段', '超长文字字段', '超长文字字段']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      stack: '总量',
+      label: {
+        show: true, 
+        position: 'insideTop',
+        color: '#fff',
+      },
+      data: [320, 302, 301, 334, 390, 330, 320],
+    },
+    {
+      name: '搜索引擎',
+      type: 'bar',
+      stack: '总量',
+      label: {
+        show: true, 
+        position: 'insideTop',
+        color: '#fff',
+      },
+      itemStyle: {
+        barBorderRadius: [4, 4, 0, 0]
+      },
+      data: [520, 632, 501, 434, 790, 530, 820],
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

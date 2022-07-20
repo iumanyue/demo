@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状 2</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="大屏控件" transform="translate(-1026.000000, -101.000000)">
+            <g id="分组-20" transform="translate(1026.000000, 101.000000)">
+                <g id="形状-2" transform="translate(1.500000, 6.000000)">
+                    <rect id="矩形" fill="#F46D00" x="0" y="3.5" width="9" height="1"></rect>
+                    <rect id="矩形" fill="#1A4E74" x="15.5" y="6.5" width="9" height="1"></rect>
+                    <rect id="矩形copycopycopycopy" fill="#1A4E74" x="15.5" y="17.5" width="9" height="1"></rect>
+                    <rect id="矩形copycopycopycopycopycopycopycopy" fill="#1A4E74" x="16" y="12" width="8" height="1"></rect>
+                    <rect id="矩形copycopycopycopycopycopycopycopycopy" fill="#F46D00" x="31" y="10.5" width="4.5" height="1"></rect>
+                    <rect id="矩形copy" fill="#F46D00" x="0" y="27.5" width="9" height="1"></rect>
+                    <rect id="矩形" fill="#F46D00" x="4" y="4.5" width="1" height="7.5"></rect>
+                    <rect id="矩形copycopy" fill="#1A4E74" x="19.5" y="6.5" width="1" height="4"></rect>
+                    <rect id="矩形" fill="#F46D00" x="30" y="0" width="7" height="1"></rect>
+                    <rect id="矩形copycopycopycopycopycopycopy" fill="#F46D00" x="30" y="23" width="7" height="1"></rect>
+                    <rect id="矩形copycopy" fill="#F46D00" x="33" y="0.5" width="1" height="6.5"></rect>
+                    <rect id="矩形copycopycopycopycopycopy" fill="#F46D00" x="33" y="17" width="1" height="6.5"></rect>
+                    <rect id="矩形copycopycopy" fill="#1A4E74" x="19.5" y="15" width="1" height="3"></rect>
+                    <rect id="矩形" stroke="#F46D00" stroke-width="2" x="1" y="13" width="7" height="5"></rect>
+                    <rect id="矩形" stroke="#1A4E74" stroke-width="2" x="16" y="11.5" width="8" height="3"></rect>
+                    <rect id="矩形copycopycopycopycopy" stroke="#F46D00" stroke-width="2" x="31.5" y="8" width="4" height="8"></rect>
+                    <rect id="矩形" fill="#F46D00" x="1" y="14" width="7" height="1"></rect>
+                    <rect id="矩形" fill="#F46D00" x="4" y="19" width="1" height="8.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

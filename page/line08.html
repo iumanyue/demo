@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">视觉映射</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '视觉映射',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 视觉映射
+  visualMap: {
+    show: true,
+    type: 'piecewise', // 分段型
+    // 分段区间 // lt（小于），gt（大于），lte（小于等于），gte（大于等于）
+    pieces: [{
+      lt: 50,
+      label: '一级',
+      color: '#66CC00'
+    },
+    {
+      gte: 50,
+      lt: 100,
+      label: '二级',
+      color: '#FFFF33'
+    },
+    {
+      gte: 100,
+      lt: 150,
+      label: '三级',
+      color: '#FFBF5D'
+    },
+    {
+      gte: 150,
+      label: '四级',
+      color: '#FD6979'
+    }],
+    itemWidth: 20,
+    itemHeight: 8,
+    orient: 'horizontal',
+    top: 10,
+    right: 10,
+  },
+  // 数据
+  series: [
+    {
+      name: '',
+      type: 'line',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      data: [32, 45, 68, 84, 120, 130, 320],
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

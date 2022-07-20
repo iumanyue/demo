@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">水球图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-liquidfill.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 水球图
+var myChart = echarts.init(document.getElementById('chart'));
+var option = {
+  series: [{
+    type: 'liquidFill',
+    radius: '70%',
+    center: ['50%', '50%'],
+    shape: 'circle',//形状，'circle'，'rect'，'roundRect'，'triangle'，'diamond'，'pin'，'arrow'
+    data: [0.48, 0.48],
+    // 背景填充
+    backgroundStyle: {
+      borderWidth: 8,
+      borderColor: '#459DBD',
+      color: '#fff'
+    },
+    // 波浪颜色
+    color: [new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+      offset: 1,
+      color: 'rgba(135, 241, 244, 0.7)'
+    },
+    {
+      offset: 0,
+      color: 'rgba(73, 192, 255, 0.7)'
+    }])],
+    // 波浪颜色-纯色
+    // color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
+    itemStyle: {
+      shadowBlur: 0,
+      opacity: 1,
+    },
+    // 轮廓
+    outline: {
+      show: false
+    },
+    // 标签
+    label: {
+      fontSize: 28,
+      lineHeight: 40,
+      formatter: function(v) {
+        return (v.data * 100).toFixed(0) + "%" + '\n完成度';
+      },
+      align: 'center',
+    }
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

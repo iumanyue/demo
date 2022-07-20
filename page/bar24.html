@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">双向柱图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'), 'skinUpp');
+
+var xData = ['海淀区', '朝阳区', '东城区', '西城区', '大兴区', '昌平区'];
+var dataMan = [3135, 1245, 2356, 2356, 2356, 2346];
+var dataWomen = [3456, 2345, 2345, 2543, 2346, 2135];
+
+var option = {
+  // 标题
+  title: {
+    text: '双向柱图',
+  },
+  //图例
+  legend: {
+
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  grid: [
+    {
+      // 左侧图表
+      show: false,
+      left: '3%',
+      top: '50',
+      bottom: '40',
+      width: '40%',
+      containLabel: false,
+    }, 
+    {
+      // 中部标签
+      show: false,
+      left: '50%',
+      top: '50',
+      bottom: '40',
+      width: '0',
+      containLabel: false,
+    }, 
+    {
+      // 右侧图表
+      show: false,
+      right: '3%',
+      top: '50',
+      bottom: '40',
+      width: '40%',
+      containLabel: false,
+    }
+  ],
+  // x轴
+  xAxis: [
+    {
+      // 左侧图表
+      type: 'value',
+      inverse: true,
+      axisLine: {
+        show: true
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        show: true,
+      },
+      splitLine: {
+        show: true,
+      },
+    },
+    {
+      // 中部标签
+      gridIndex: 1,
+      show: false,
+    },
+    {
+      // 右侧图表
+      gridIndex: 2,
+      axisLine: {
+        show: true
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        show: true,
+      },
+      splitLine: {
+        show: true,
+      },
+    }
+  ],
+  // y轴
+  yAxis: [
+    {
+      // 左侧图表
+      type: 'category',
+      inverse: true,
+      position: 'right',
+      axisLine: {
+        show: true,
+      },
+      axisTick: {
+        show: true
+      },
+      axisLabel: {
+        show: false
+      },
+      data: xData
+    }, 
+    {
+      // 中部标签
+      gridIndex: 1,
+      type: 'category',
+      inverse: true,
+      position: 'left',
+      axisLine: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        show: true,
+        align: "center",
+        padding: [0, 0, 0, 16]
+      },
+      data: xData.map(function (value) {
+        return {
+          value: value,
+        }
+      })
+    }, 
+    {
+      // 右侧图表
+      gridIndex: 2,
+      type: 'category',
+      inverse: true,
+      position: 'left',
+      axisLine: {
+        show: true,
+      },
+      axisTick: {
+        show: true
+      },
+      axisLabel: {
+        show: false
+      },
+      data: xData
+    }
+  ],
+  // 数据
+  series: [{
+      name: "男性",
+      type: "bar",
+      label: {
+        show: false,
+      },
+      data: dataMan,
+    },
+    {
+      name: "女性",
+      type: "bar",
+      xAxisIndex: 2,
+      yAxisIndex: 2,
+      label: {
+        show: false,
+      },
+      data: dataWomen,
+    }
+  ]
+};
+myChart.setOption(option);
+
+$(window).on('resize', function () {
+  myChart.resize();
+})
+
+</script>
+
+
+
+
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">饼图-自定义图例样式及内容</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 饼图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+// 图例图标
+var legendImg = 'path://M15,9 L14.8237272,8.99490731 C13.24892,8.90366088 12,7.59768088 12,6 C12,4.40231912 13.24892,3.09633912 14.8237272,3.00509269 L15,3 L21,3 C22.6568542,3 24,4.34314575 24,6 C24,7.59768088 22.75108,8.90366088 21.1762728,8.99490731 L21,9 L15,9 Z';
+var data = [
+  {value: 335, name: '直接访问'},
+  {value: 110, name: '邮件营销'},
+  {value: 274, name: '联盟广告'},
+  {value: 235, name: '视频广告'},
+  {value: 400, name: '搜索引擎'}
+];
+// 计算总量
+var dataTotal = 0;
+for(var i = 0, l = data.length; i < l; i++){
+  dataTotal += data[i].value;
+}
+
+// dataTotal = parseFloat(dataTotal.toFixed(10));
+
+var option = {
+  // 标题
+  title: { 
+    text: '自定义图例（样式-数据）',
+  },
+  //图例
+  legend: {
+    orient: 'vertical',
+    top: 'center',
+    right: '5%',
+    icon: legendImg,
+    formatter: function(name){
+      var total = 0;
+      var target;
+      for (var i = 0, l = data.length; i < l; i++) {
+        total += data[i].value;
+        if (data[i].name == name) {
+          target = data[i].value;
+        }
+      }
+      var arr = [
+        '{legendName|'+name+'}',
+        '{legendNum|'+target+'人次}',
+        '{legendText|'+((target/total)*100).toFixed(2)+'%}'
+      ]
+      return arr.join('')
+    },
+    textStyle:{
+      rich:{
+        legendName:{
+          fontSize: 14,
+          align: 'left',
+          lineHeight: 24,
+          width: 70,
+        },
+        legendNum:{
+          fontSize: 14,
+          align: 'right',
+          lineHeight: 24,
+          width: 60,
+        },
+        legendText:{
+          fontSize: 14,
+          align: 'right',
+          lineHeight: 24,
+          width: 70,
+        },
+      }
+    }
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  // 数据
+  series: [{
+    type: 'pie',
+    center: ['30%', '50%'],
+    radius: ['40%', '70%'],
+    label: {
+      show: false,
+    },
+    data: data,
+  },{
+    type: 'pie',
+    center: ['30%', '50%'],
+    radius: [0, '40%'],
+    label: {
+      show: true,
+      position: 'center',//标签的位置。默认outside，可选inside，center
+      color: '#f60',
+      fontSize: 20,
+      lineHeight: 30,
+      formatter:'总量\n{c}万次', //{a}：系列名。{b}：数据名。{c}：数据值。{d}：百分比。
+    },
+    itemStyle:{
+      color: 'rgba(255,255,255,0)',
+    },
+    tooltip:{
+      show: false,
+    },
+    data: [
+      {
+        value: dataTotal,
+        name: ''
+      }
+    ],//数据为总量
+  }
+  ]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+@charset "UTF-8";
+// 文字颜色
+$color: #333; // 颜色-基准／默认
+$color-default: #909399; // 颜色-普通按钮
+
+$color-hover: #F46D00; // 颜色-划入
+$color-primary: #F46D00; // 颜色-突出
+$color-secondary: #327EE9; // 颜色-突出-次要
+
+$color-light: #666; // 颜色-浅色
+$color-lighter: #999; // 颜色-浅色-高级
+$color-lightest: #cacaca; // 颜色-浅色-最高级
+
+$color-dark: #222; //颜色-深色
+$color-darker: #111; //颜色-深色-高级
+$color-darkest: #000; //颜色-深色-最高级
+
+$color-success: #52C41A; // 颜色-成功
+$color-error: #f00; // 颜色-失败
+$color-warning: #FFBF00; // 颜色-警告
+$color-danger: #FF3B30; // 颜色-危险
+$color-disabled: #eaeded; //颜色-禁用
+$color-price: #f10214; // 颜色-金钱
+
+
+// 边框颜色
+$color-border: #e3e3e3; // 边框色
+$color-border-light: #f5f5f5; // 边框-浅色
+$color-border-dark: #b3b3b3; // 边框-深色
+
+//背景色
+$bg: #ededed; //背景色-默认
+$bg-light: #F5F7FA; // 背景色-浅色
+$bg-dark: #bdbdbc; // 背景色-深色
+
+// 字号
+$size: 14px; // 字号-默认
+$size-lg: 16px; // 字号-大号
+$size-mlg: 18px; // 字号-更大
+$size-blg: 20px; // 字号-最大
+$size-sm: 12px; // 字体-小号
+
+// 圆角
+$radius: 4px; // 圆角弧度-默认
+$radius-lg: 8px; // 圆角弧度-大
+$radius-sm: 4px; // 圆角弧度-小
+
+// 间距
+$num: 20px; // 间距
+$num-sm: 10px; // 小间距
+$num-lg: 30px; // 大间距
+
+// 高度
+$height: 32px; //高度
+$line-height: 20px; //行高20
+
+
+//form变量 
+$height-form: 32px; //form高度 输入框 按钮
+$height-form-lg: 36px; //form按钮高度-大
+$height-form-sm: 24px; //form高度-小
+
+$line-height-form: 20px; //form行高
+
+$radius-form: 3px; // form 圆角
+$radius-form-lg: 4px; // form 圆角-大
+$radius-form-sm: 2px; // form 圆角-小
+
+//按钮
+$bg-btn: #fff; //按钮背景色
+$padding-base-vertical: ($height-form - $line-height-form - 2)/2; //纵向留白
+$padding-base-vertical-lg: ($height-form-lg - $line-height-form - 2)/2; //纵向留白-大
+$padding-base-vertical-sm: ($height-form-sm - $line-height-form - 2)/2; //纵向留白-小
+$padding-base-horizontal: 9px;//横向留白
+
+$min-width-btn: 80px; //按钮最低宽度
+$min-width-btn-lg: 100px; //按钮最低宽度-大
+$min-width-btn-sm: 60px; //按钮最低宽度-小
+
+//输入框
+$bg-input: #fff; //输入框背景

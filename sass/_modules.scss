@@ -1,0 +1,498 @@
+@charset "UTF-8";
+/*网站通用样式及组件*/ 
+// 间距
+.ml{
+  margin-left: $num;
+}
+
+.ml-sm{
+  margin-left: $num-sm;
+}
+
+.ml-lg{
+  margin-left: $num-lg;
+}
+
+.ml-0{
+  margin-left: 0;
+}
+
+.mr{
+  margin-right: $num;
+}
+
+.mr-sm{
+  margin-right: $num-sm;
+}
+
+.mr-lg{
+  margin-right: $num-lg;
+}
+
+.mr-0{
+  margin-right: 0;
+}
+
+.mt{
+  margin-top: $num;
+}
+
+.mt-sm{
+  margin-top: $num-sm;
+}
+
+.mt-lg{
+  margin-top: $num-lg;
+}
+
+.mt-0{
+  margin-top: 0;
+}
+
+.mb{
+  margin-bottom: $num;
+}
+
+.mb-sm{
+  margin-bottom: $num-sm;
+}
+
+.mb-lg{
+  margin-bottom: $num-lg;
+}
+
+.mb-0{
+  margin-bottom: 0;
+}
+
+
+//显示隐藏
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+
+.vs-show{
+  visibility: visible;
+}
+
+.vs-hide{
+  visibility: hidden;
+}
+
+//浮动
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+//文字对齐
+.text-center{
+  text-align: center;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+//文字样式-颜色
+.text-default{
+  color: $color;
+}
+
+.text-primary{
+  color: $color-primary;
+}
+
+.text-light,
+.text-tips
+{
+  color: $color-light;
+}
+
+.text-lighter{
+  color: $color-lighter;
+}
+
+.text-lightest{
+  color: $color-lightest;
+}
+
+.text-success{
+  color: $color-success;
+}
+
+.text-error{
+  color: $color-error;
+}
+
+.text-warning{
+  color: $color-warning;
+}
+
+.text-danger{
+  color: $color-danger;
+}
+
+.text-disabled{
+  color: $color-disabled;
+}
+
+.text-price{
+  color: $color-price;
+}
+
+.text-white{
+  color: #fff;
+}
+
+//文字样式-字号
+.text-lg{
+  font-size: $size-lg;
+}
+
+.text-mlg{
+  font-size: $size-mlg;
+}
+
+.text-blg{
+  font-size: $size-blg;
+}
+
+.text-sm{
+  font-size: $size-sm;
+}
+
+.text-md{
+  font-size: $size;
+}
+
+.text-bold,
+.text-700{
+  font-weight: 700;
+}
+
+.text-normal,
+.text-400{
+  font-weight: 400;
+}
+
+.text-underline{
+  text-decoration: underline;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.text-indent{
+  text-indent: 2em;
+}
+
+.text-required{
+  color: #f00;
+  font-weight: 400;
+}
+
+// 边框
+.border{
+  border: 1px solid $color-border;
+}
+
+.border-none{
+  border: none;
+}
+
+.border-right-none{
+  border-right: none;
+}
+
+.border-left-none{
+  border-left: none;
+}
+
+.border-top-none{
+  border-top: none;
+}
+
+.border-bottom-none{
+  border-bottom: none;
+}
+
+
+// 筛选
+.filter{
+  background: #fff;
+  margin: $num 0;
+  position: relative;
+  border-radius: 3px;
+  padding: 10px 20px;
+  .filter-item{
+    position: relative;
+    padding: 5px 0;
+    display: flex;
+    &.filter-item-sort{
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      .filter-hd{
+        width: auto;
+      }
+    }
+    &.filter-item-search{
+      position: absolute;
+      top: 10px;
+      right: $num;
+      .filter-hd{
+        width: auto;
+      }
+    }
+  }
+  .filter-hd{
+    width: 90px;
+    line-height: 30px;
+    color: $color-light;
+    position: relative;
+    &.is-less{
+      width: 60px;
+    }
+  }
+  .filter-bd{
+    flex: 1;
+  }
+  .filter-key-list{
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      margin-right: 10px;
+      white-space:nowrap;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+      white-space:nowrap;
+      text-align: center;
+      cursor: pointer;
+      transition: .3s linear color;
+      &:hover{
+        color: $color-primary;
+      }
+    }
+    .is-active{
+      color: $color-primary;
+      &:hover{
+        color: $color-primary;
+      }
+    }
+    &.is-has-icon{
+
+    }
+  }
+  .filter-key-list-icon{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -15px;
+    li{
+      margin: 0 12px 15px 0;
+      width: 78px;
+      height: 78px;
+      padding: 3px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      &:hover{
+        color: $color-primary;
+      }
+      &.is-active{
+        border: 1px solid $color-border;
+        border-radius: 5px;
+      }
+    }
+    .list-icon{
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+    }
+    .list-name{
+      margin-top: 10px;
+      line-height: 20px;
+      height: 20px;
+      text-align: center;
+      @include ellipsis;
+    }
+  }
+}
+
+// 列表
+.main-show-box{
+  overflow: hidden;
+}
+.main-show-list{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -21px;
+  .list-item{
+    width: 386px;
+    margin: 0 21px 20px 0;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+  }
+  .list-pic{
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    .list-img{
+      display: block;
+      width: 100%;
+      height: 300px;
+      border-radius: 5px 5px 0 0;
+    }
+    &.is-gif{
+      &:after{
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 40px;
+        height: 20px;
+        background: url(../images/btn-gif.svg);
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .list-con{
+    padding: 5px 0;
+    border-top: 1px solid $color-border;
+    
+  }
+  .list-name{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    font-size: $size-lg;
+  }
+}
+.banner{
+  height: 240px;
+  background: url(../images/banner.jpg);
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+// 代码编辑器
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 20px;
+  background: #fff;
+  color: #333;
+}
+
+/* Gray DOCTYPE selectors like WebKit */
+.xml .hljs-meta {
+  color: #c0c0c0;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #007400;
+}
+
+.hljs-tag,
+.hljs-attribute,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-name {
+  color: #aa0d91;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+  color: #3F6E74;
+}
+
+.hljs-code,
+.hljs-string,
+.hljs-meta-string {
+  color: #c41a16;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #0E0EFF;
+}
+
+.hljs-title,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-number {
+  color: #1c00cf;
+}
+
+.hljs-section,
+.hljs-meta {
+  color: #643820;
+}
+
+
+.hljs-class .hljs-title,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-params {
+  color: #5c2699;
+}
+
+.hljs-attr {
+  color: #836C28;
+}
+
+.hljs-subst {
+  color: #000;
+}
+
+.hljs-formula {
+  background-color: #eee;
+  font-style: italic;
+}
+
+.hljs-addition {
+  background-color: #baeeba;
+}
+
+.hljs-deletion {
+  background-color: #ffc8bd;
+}
+
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #9b703f;
+}
+
+.hljs-doctag,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">多颜色柱图 - 颜色与数值无关</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '多颜色柱图-无图例(函数写法)',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis', //axis坐标轴触发
+    axisPointer: {
+      type: 'shadow',
+    },
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '搜索引擎',
+      type: 'bar',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      itemStyle: {
+        barBorderRadius: [4, 4, 0, 0],
+        color: function(params) {
+          var colorList =["#3fb1e3", "#6be6c1", "#626c91", "#a0a7e6", "#c4ebad", "#96dee8","#f64246"];
+          console.log(params)
+          return colorList[params.dataIndex]
+        },
+      },
+      data: [320, 302, 301, 334, 390, 330, 320],
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+
+
+
+
+<script src="../js/common.js"></script>
+</body>
+</html>

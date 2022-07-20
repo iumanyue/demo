@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">饼图-外环叠加圆环</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 饼图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '饼图-内环叠加圆环',
+  },
+  //图例
+  legend: {
+    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+    orient: 'vertical',
+    top: 'center',
+    right: '5%',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item', 
+  },
+  // 数据
+  series: [{
+    type: 'pie',
+    center: ['40%', '55%'],
+    radius: ['25%', '70%'],
+    //文字标签
+    label: {
+      show: true,
+      position: 'inside',//标签的位置。默认outside，可选inside，center
+      formatter: '{d}%', //{a}：系列名。{b}：数据名。{c}：数据值。{d}：百分比。
+      color: '#fff'
+    },
+    hoverOffset: 0,
+    data:[
+      {value: 335, name: '直接访问'},
+      {value: 110, name: '邮件营销'},
+      {value: 274, name: '联盟广告'},
+      {value: 235, name: '视频广告'},
+      {value: 400, name: '搜索引擎'}
+    ],
+  },
+  {
+    // 外环圆环
+    type: 'pie',
+    center: ['40%', '55%'],
+    radius: ['60%', '70%'],
+    tooltip: {
+      show: false,
+    },
+    hoverOffset: 0,
+    label: {
+      show: false,
+    },
+    itemStyle:{
+      color: 'rgba(255,255,255,.2)'
+    },
+    data:[
+      {value: 1},
+    ],
+    z: 3
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

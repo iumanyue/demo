@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">圆环柱图 - 极坐标系下柱图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [60];
+var option = {
+  // 标题
+  title: {
+    text: data[0]+'%',
+    subtext: '任务完成度',
+    x: 'center',
+    y: 'center',
+    textStyle: {
+      fontSize: '50',
+      color: '#f60',
+      foontWeight: '700',
+    },
+    subtextStyle: {
+      fontSize: 30,
+      color: '#999'
+    }
+  },
+  // 极坐标系
+  polar: {
+    radius: ['30%', '90%'],//柱形显示位置与此设置相关
+    center: ['50%', '50%'],
+  },
+  angleAxis: {
+    max: 100,
+    show: false,
+  },
+  radiusAxis: {
+    type: 'category',
+    show: true,
+    axisLabel: {
+      show: false,
+    },
+    axisLine: {
+      show: false,
+    },
+    axisTick: {
+      show: false
+    },
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      coordinateSystem: 'polar',//使用极坐标系
+      roundCap: true,//是否在环形柱条两侧使用圆弧效果。
+      barWidth: 40,
+      barMaxWidth: 40,
+      showBackground: true,
+      backgroundStyle: {
+        color: '#f5f5f5',
+      },
+      itemStyle: {
+        color: '#5470c6',
+      },
+      data: data,
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+
+
+
+
+<script src="../js/common.js"></script>
+</body>
+</html>

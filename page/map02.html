@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">地图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/china.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 地图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [
+  {name: "北京",value: 177},
+  {name: "天津",value: 42},
+  {name: "河北",value: 102},
+  {name: "山西",value: 81},
+  {name: "内蒙古",value: 47},
+  {name: "辽宁",value: 67},
+  {name: "吉林",value: 82},
+  {name: "黑龙江",value: 66},
+  {name: "上海",value: 24},
+  {name: "江苏",value: 92},
+  {name: "浙江",value: 114},
+  {name: "安徽",value: 109},
+  {name: "福建",value: 116},
+  {name: "江西",value: 91},
+  {name: "山东",value: 119},
+  {name: "河南",value: 137},
+  {name: "湖北",value: 116},
+  {name: "湖南",value: 114},
+  {name: "重庆",value: 91},
+  {name: "四川",value: 125},
+  {name: "贵州",value: 62},
+  {name: "云南",value: 83},
+  {name: "西藏",value: 50},
+  {name: "陕西",value: 80},
+  {name: "甘肃",value: 56},
+  {name: "青海",value: 10},
+  {name: "宁夏",value: 18},
+  {name: "新疆",value: 67},
+  {name: "广东",value: 123},
+  {name: "广西",value: 59},
+  {name: "海南",value: 14},
+];
+// 获取地图经纬度
+var geoCoordMap = {};
+var mapFeatures = echarts.getMap('china').geoJson.features;
+mapFeatures.forEach(function(v) {
+  // 地区名称
+  var name = v.properties.name;
+  // 地区经纬度
+  geoCoordMap[name] = v.properties.cp;
+});
+// 生成数据 
+var convertData = function(data) {
+  var res = [];
+  for (var i = 0; i < data.length; i++) {
+    var geoCoord = geoCoordMap[data[i].name];
+    if (geoCoord) {
+      res.push({
+        name: data[i].name,
+        value: geoCoord.concat(data[i].value),
+      });
+    }
+  }
+  // console.log(res);
+  return res;
+};
+
+var option = {
+  title: {
+    text: '各省销量散点图',
+    textStyle: {
+      fontSize: 30
+    },
+    top: 30,
+    left: 'center'
+  },
+  tooltip: {
+    show: true,
+    formatter: function(params) {
+      return params.name + '：' + params.data['value'];
+    },
+  },
+  // 视觉映射组件
+  visualMap: {
+    type: 'piecewise',
+    splitNumber: 4,
+    pieces: [
+      {lt: 50}, //小于50
+      {gte: 50, lt: 100, }, //大于等于50，小于100
+      {gte: 100, lt: 200},//大于等于100，小于200
+      {gte: 200}, //大于等于200
+    ],
+    showLabel: true,
+    seriesIndex: [0],
+    itemWidth: 20,
+    itemHeight: 10,
+    inRange: {
+      color: ['#1A8BEB', '#E9DA40', '#EC9E43', '#EE4A4D']
+    },
+    textStyle: {
+      color: '#333'
+    },
+    bottom: 30,
+    left: 100,
+  },
+  // 地理坐标系组件
+  geo: {
+    show: true,
+    map: 'china',
+    itemStyle: {
+      areaColor: 'rgba(255,255,255,.2)',
+      borderColor: '#3B5077',
+    },
+    emphasis:{
+      label:{
+        show: false,
+      },
+      itemStyle:{
+        areaColor: 'rgba(0,0,0,.05)',
+      }
+    }
+  },
+  series: [{
+    name: '散点图',
+    type: 'scatter',
+    coordinateSystem: 'geo',
+    symbol: 'circle',
+    //散点图大小与数据关联
+    symbolSize: function(val) {
+      return val[2] / 6
+    },
+    tooltip: {
+      show: true,
+      formatter: function(params) {
+        return params.name + '：' + params.data['value'][2]
+      },
+    },
+    label: {
+      //显示省份和值
+      formatter: function(params) {
+        return params.name + '：' + params.data['value'][2]
+      },
+      position: 'right',
+      color: '#333',
+      show: true
+    },
+    data: convertData(data),
+  }]
+}
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">折线图标记样式</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '折线图标记样式',
+  },
+  //图例
+  legend: {
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: 'line01',
+      type: 'line',
+      stack: '总量',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      symbol: 'circle',
+      symbolSize: 12,
+      itemStyle:{
+        color: '#3fb1e3'
+      },
+      lineStyle:{
+        color: '#3fb1e3'
+      },
+      data: [320, 302, 401, 534, 390, 330, 320],
+    },
+    {
+      name: 'line02',
+      type: 'line',
+      stack: '总量',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      symbol: 'circle',
+      symbolSize: 12,
+      itemStyle:{
+        color: '#2BA57D',
+        borderWidth: 10,
+        borderColor: 'rgba(43,165,125,.4)',
+      },
+      lineStyle:{
+        color: '#2BA57D'
+      },
+      data: [320, 302, 401, 534, 390, 330, 320],
+    },
+    {
+      name: 'line03',
+      type: 'line',
+      stack: '总量',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      symbol: 'image://data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7',
+      symbolSize: 12,
+      itemStyle:{
+        color: '#6be6c1'
+      },
+      lineStyle:{
+        color: '#6be6c1'
+      },
+      data: [520, 632, 501, 434, 790, 530, 820],
+    },
+    {
+      name: 'line04',
+      type: 'line',
+      stack: '总量',
+      label: {
+        show: true,
+        position: 'top',
+      },
+      symbol: 'path://M30.9,53.2C16.8,53.2,5.3,41.7,5.3,27.6S16.8,2,30.9,2C45,2,56.4,13.5,56.4,27.6S45,53.2,30.9,53.2z M30.9,3.5C17.6,3.5,6.8,14.4,6.8,27.6c0,13.3,10.8,24.1,24.101,24.1C44.2,51.7,55,40.9,55,27.6C54.9,14.4,44.1,3.5,30.9,3.5z M36.9,35.8c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H36c0.5,0,0.9,0.4,0.9,1V35.8z M27.8,35.8 c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H27c0.5,0,0.9,0.4,0.9,1L27.8,35.8L27.8,35.8z',
+      symbolSize: 12,
+      itemStyle:{
+        color: '#f00'
+      },
+      lineStyle:{
+        color: '#f00'
+      },
+      data: [520, 632, 501, 434, 790, 530, 820],
+    },
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

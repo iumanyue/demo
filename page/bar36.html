@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">立体柱状图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+// 绘制左侧面
+const CubeLeft = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0
+  },
+  buildPath: function (ctx, shape) {
+    // shape是从custom传入的
+    const xAxisPoint = shape.xAxisPoint
+    const c0 = [shape.x, shape.y]; //右上角
+    const c1 = [shape.x - 24, shape.y - 12]//左上角
+    const c2 = [xAxisPoint[0] - 24, xAxisPoint[1] - 12];//左下角
+    const c3 = [xAxisPoint[0], xAxisPoint[1]];//右下角
+    ctx.moveTo(c0[0], c0[1]).lineTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).closePath()
+  }
+})
+// 绘制右侧面
+const CubeRight = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0
+  },
+  buildPath: function (ctx, shape) {
+    const xAxisPoint = shape.xAxisPoint;
+    const c1 = [shape.x, shape.y];//左上角
+    const c2 = [xAxisPoint[0], xAxisPoint[1]];//左下角
+    const c3 = [xAxisPoint[0] + 24, xAxisPoint[1] - 8];//右下角
+    const c4 = [shape.x + 24, shape.y - 8];//右上角
+    ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+  }
+})
+// 绘制顶面
+const CubeTop = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0
+  },
+  buildPath: function (ctx, shape) {
+    const c1 = [shape.x, shape.y];//默认起点下角
+    const c2 = [shape.x + 24, shape.y - 8];//右角
+    const c3 = [shape.x + 0, shape.y - 23];//上角
+    const c4 = [shape.x - 24, shape.y - 12];//左角
+    ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+  }
+})
+// 注册三个面图形
+echarts.graphic.registerShape('CubeLeft', CubeLeft)
+echarts.graphic.registerShape('CubeRight', CubeRight)
+echarts.graphic.registerShape('CubeTop', CubeTop)
+
+const dataMax = [200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200];//最大值
+const dataValue = [21.9, 26.8, 24.2, 54.9, 74.5, 78.3, 119.0, 126.9, 190.8, 123.2, 156.2, 169.3, 179.5, 155.5];
+
+option = {
+  backgroundColor: "#222",
+
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    formatter: function (params, ticket, callback) {
+      const item = params[1]
+      return item.name + ' : ' + item.value;
+    }
+  },
+  xAxis: {
+    type: 'category',
+    axisLabel: {
+      color: '#FFF'
+    },
+    data: ['立春', '雨水', '惊蛰', '春分', '清明', '谷雨', '立夏', '小满', '芒种', '夏至', '小暑', '大暑', '立秋', '处暑'],
+  },
+  yAxis: {
+    type: 'value',
+    splitLine: {
+      show: false,
+    },
+    axisLabel: {
+      color: '#FFF'
+    },
+  },
+  series: [{
+    // 最大值
+    type: 'custom',
+    renderItem: function (params, api) {
+      const location = api.coord([api.value(0), api.value(1)])
+      return {
+        type: 'group',
+        children: [{
+          type: 'CubeLeft',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(47,102,192,.27)'
+          }
+        }, {
+          type: 'CubeRight',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(59,128,226,.27)'
+          }
+        }, {
+          type: 'CubeTop',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(72,156,221,.27)'
+          }
+        }]
+      }
+    },
+    data: dataMax
+  }, {
+    type: 'custom',
+    renderItem: (params, api) => {
+      const location = api.coord([api.value(0), api.value(1)])
+      var color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgba(67,102,243,1)',
+        },
+        {
+          offset: 1,
+          color: 'rgba(29,67,243,1)'
+        }
+      ])
+      return {
+        type: 'group',
+        children: [{
+          type: 'CubeLeft',
+          shape: {
+            api,
+            xValue: api.value(0),
+            yValue: api.value(1),
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: color
+          }
+        }, {
+          type: 'CubeRight',
+          shape: {
+            api,
+            xValue: api.value(0),
+            yValue: api.value(1),
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: color
+          }
+        }, {
+          type: 'CubeTop',
+          shape: {
+            api,
+            xValue: api.value(0),
+            yValue: api.value(1),
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: color
+          }
+        }]
+      }
+    },
+    data: dataValue
+  }, {
+    type: 'bar',
+    label: {
+      normal: {
+        show: true,
+        position: 'top',
+        fontSize: 16,
+        color: '#fff',
+        offset: [2, -25]
+      }
+    },
+    itemStyle: {
+      color: 'transparent',
+    },
+    tooltip: {
+
+    },
+    data: dataValue
+  }]
+}
+
+
+
+myChart.setOption(option);
+
+
+console.log(myChart)
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

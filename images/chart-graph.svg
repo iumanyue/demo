@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状 2</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="大屏控件" transform="translate(-1209.000000, -101.000000)">
+            <g id="分组-22" transform="translate(1208.000000, 101.000000)">
+                <g id="中国地图" transform="translate(1.000000, 0.000000)">
+                    <g id="形状-2" transform="translate(1.500000, 1.500000)">
+                        <line x1="27" y1="23" x2="30.5" y2="32" id="路径-23" stroke="#CECECE"></line>
+                        <polyline id="路径-22" stroke="#CECECE" points="16 18 27 23 34.5 19"></polyline>
+                        <polyline id="路径-19" stroke="#CECECE" points="23 2 11 6 16 17.5 8 28 2 24"></polyline>
+                        <line x1="8" y1="28" x2="16" y2="30" id="路径-20" stroke="#CECECE"></line>
+                        <line x1="7.5" y1="28" x2="3" y2="34" id="路径-21" stroke="#CECECE"></line>
+                        <circle id="椭圆形" fill="#CECECE" cx="23" cy="2" r="2"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#CECECE" cx="2" cy="24" r="2"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#CECECE" cx="3" cy="34" r="2"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#CECECE" cx="16" cy="30" r="2"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#CECECE" cx="34.5" cy="19" r="2.5"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#CECECE" cx="30.5" cy="32" r="2.5"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" cx="10.5" cy="6" r="4"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" cx="27.25" cy="22.75" r="3.25"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" cx="7.75" cy="27.75" r="2.75"></circle>
+                        <circle id="椭圆形copycopycopycopycopycopycopycopycopycopycopycopy" fill="#F46D00" cx="16" cy="17.5" r="5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

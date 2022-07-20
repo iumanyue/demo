@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">自动排序-不同颜色</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [{
+  name: '北京',
+  value: 38
+}, {
+  name: '南京',
+  value: 85
+}, {
+  name: '吉林',
+  value: 74
+}, {
+  name: '上海',
+  value: 33
+}, {
+  name: '天津',
+  value: 7
+}, {
+  name: '太原',
+  value: 10
+}, {
+  name: '西安',
+  value: 63
+}, {
+  name: '南宁',
+  value: 29
+}];
+// 排序数组
+data.sort(function(a, b){
+  return b.value - a.value;
+})
+// X轴数据
+var categoryData = [];
+for(var i = 0; i < data.length; i++){
+  categoryData.push(data[i].name);
+}
+
+var option = {
+  // 标题
+  title: { 
+    text: '自动排序 - 不同颜色',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+  },
+  // x轴
+  xAxis: {
+    type: 'category',
+    data: categoryData,
+  },
+  // y轴
+  yAxis: {
+    type: 'value',
+  },
+  // 数据
+  series: [
+    {
+      name: '直接访问',
+      type: 'bar',
+      label: {
+        show: true, 
+        position: 'top',
+      },
+      itemStyle: {
+        barBorderRadius: [4, 4, 0, 0],
+        color: function(params) {
+          var colorList =["#f00", "#f40", "#f80", "#FD9620", "#F99F39", "#EEA857","#F1CB9F","#E9D0B2"];
+          return colorList[params.dataIndex]
+        },
+      },
+      data: data,
+    }
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

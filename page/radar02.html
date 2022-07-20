@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">雷达图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 雷达图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var option = {
+  // 标题
+  title: { 
+    text: '普通雷达图',
+  },
+  //图例
+  legend: {
+    data: ['预算分配', '实际开销'],
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  //雷达
+  radar: {
+    //雷达图的指示器，用来指定雷达图中的多个变量（维度）
+    indicator: [
+      { name: '销售部', max: 150 },
+      { name: '产品部', max: 150 },
+      { name: '综合部', max: 150 },
+      { name: '客服部', max: 150 },
+      { name: '财务部', max: 150 }
+    ],
+    name: {
+      textStyle: {
+        color: '#fff',
+        backgroundColor: '#999',
+        borderRadius: 3,
+        padding: [3, 5]
+     }
+    },
+    center: ['50%', '55%'],//中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标
+    radius: '80%',//半径
+    shape: 'circle',//圆形,雷达图绘制类型，支持 多边形'polygon' 和 圆形'circle'。
+  },
+  // 数据
+  series: [{
+    name: '预算与开销',
+    type: 'radar',
+    data: [
+      {
+        value: [120, 100, 90, 47, 109],
+        name: '预算分配',
+        label: {
+          show: true,
+          formatter:function(params) {
+            return params.value;
+          }
+        }
+      },
+      {
+        value: [98, 85, 104, 60, 105],
+        name: '实际开销',
+        label: {
+          show: true,
+          formatter:function(params) {
+            return params.value;
+          }
+        }
+      }
+    ]
+  }]
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

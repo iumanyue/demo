@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>分组 3</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="大屏控件" transform="translate(-391.000000, -101.000000)">
+            <g id="分组-11" transform="translate(390.000000, 101.000000)">
+                <g id="分组-4" transform="translate(1.000000, 0.000000)">
+                    <g id="分组-3" transform="translate(1.500000, 1.500000)">
+                        <polygon id="路径-10" fill="#D7D7D7" points="0 0 0 36 7.5 36 7.5 0"></polygon>
+                        <polygon id="路径-10copycopycopy" fill="#D7D7D7" points="20 0 20 36 27.5 36 27.5 0"></polygon>
+                        <polygon id="路径-10copy" fill="#D7D7D7" points="10 0 10 36 17.5 36 17.5 0"></polygon>
+                        <polygon id="路径-10copycopycopycopycopy" fill="#1A4E74" points="29.5 0 29.5 36 37 36 37 0"></polygon>
+                        <polygon id="路径-10" fill="#F46D00" points="-1.04083409e-16 36 7.5 36 7.5 22.5 0 22.5"></polygon>
+                        <polygon id="路径-10copycopycopycopy" fill="#F46D00" points="20 36 27.5 36 27.5 18.5 20 18.5"></polygon>
+                        <polygon id="路径-10copycopy" fill="#1A4E74" points="10 36 17.5 36 17.5 11 10 11"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

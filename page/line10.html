@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">分段折线图(当前及预测)</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 折线图
+var myChart = echarts.init(document.getElementById('chart'), 'skinUpp');
+
+var xName = ['1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时'];
+var data = [
+  [98, 67, 62, 76, 99, 71, 24, 65, null, null, null, null], 
+  [null, null, null, null, null, null, null, 65, 76, 57, 81, 41],
+];
+var tipsIndex = 7;
+var Line = ['当前','预测'];
+var color = [ '#0696f9', '#00f15a'];
+var datas = [];
+
+$.map(Line, function(item, index) {
+  datas.push({
+    symbolSize: 8,
+    name: item,
+    type: 'line',
+    smooth: true,//平滑曲线
+    label: {
+      show: true,
+    },
+    lineStyle: {
+      type: (index === 0) ? 'solid': 'dashed'
+    },
+    itemStyle: {
+      borderWidth: 4,
+      color: color[index],
+    },
+    z: (index === 0) ? '2': '1',
+    data: data[index],
+  })
+  console.log(datas);
+});
+
+var option = {
+  tooltip: {
+    trigger: 'item',
+  },
+  title: {
+    text: '分段折线图(当前及预测)'
+  },
+  legend: {
+    data: Line,
+  },
+  xAxis: {
+    type: 'category',
+    data: xName,
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: datas
+};
+myChart.setOption(option);
+
+
+// 显示当前时间数据
+function showToolTip(){
+  myChart.dispatchAction({
+    type: 'showTip',
+    seriesIndex: 0,
+    dataIndex: tipsIndex,
+  });
+}
+showToolTip();
+
+$('#chart').on('mouseout',function(){
+  showToolTip();
+})
+
+
+$(window).on('resize',function() {
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

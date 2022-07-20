@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>形状 2</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="大屏控件" transform="translate(-391.000000, -193.000000)">
+            <g id="分组-25" transform="translate(390.000000, 193.000000)">
+                <g id="中国地图" transform="translate(1.000000, 0.000000)">
+                    <g id="形状-2" transform="translate(1.500000, 3.500000)">
+                        <path d="M0,0 C9.11111111,2 15.9444444,3 20.5,3 C23.127677,3 27.627677,2.33333333 34,1 L37,1 L37,34 L0,34 L0,0 Z" id="矩形" fill="#CECECE"></path>
+                        <path d="M0,10 C1.89496646,9.77526755 4.22829979,9.77526755 7,10 C9.77170021,10.2247324 13.6050335,10.7247324 18.5,11.5 L0,11.5 L0,10 Z" id="矩形" fill="#FFFFFF"></path>
+                        <path d="M23.5,10 C25.3949665,9.77526755 27.7282998,9.77526755 30.5,10 C33.2717002,10.2247324 35.4383669,11.0580658 37,12.5 L26.5,11.5 L23.5,11.5 L23.5,10 Z" id="矩形" fill="#FFFFFF" transform="translate(30.250000, 11.165725) scale(-1, 1) translate(-30.250000, -11.165725) "></path>
+                        <rect id="矩形" fill="#F46D00" x="0" y="0" width="3" height="10"></rect>
+                        <rect id="矩形" fill="#F46D00" x="20.5" y="3" width="3" height="11.5"></rect>
+                        <rect id="矩形" fill="#F46D00" x="18.5" y="21" width="3" height="3.5"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" x="0" y="11.5" width="3" height="15"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" x="13" y="28" width="3" height="6"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#F46D00" x="0" y="28" width="3" height="6"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#F46D00" x="34" y="25.5" width="3" height="8.5"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" x="34" y="1" width="3" height="9"></rect>
+                        <rect id="矩形copycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopycopy" fill="#1A4E74" x="34" y="11.5" width="3" height="12.5"></rect>
+                        <path d="M34,9 C31.9353183,8.19690911 30.4353183,7.69690911 29.5,7.5 C28.5646817,7.30309089 26.898015,7.13642422 24.5,7 L29,8 L34,9 Z" id="路径-28" fill="#FFFFFF"></path>
+                        <path d="M3,18 C5.49864737,16.3176843 7.66531404,15.1510176 9.5,14.5 C11.334686,13.8489824 14.334686,13.1823157 18.5,12.5 L9.5,15.5 L3,18 Z" id="路径-29" fill="#FFFFFF"></path>
+                        <path d="M15.9931524,33.1306606 C18.8948074,31.4483448 21.4109364,30.2816782 23.5415395,29.6306606 C25.6721425,28.979643 29.1560135,28.3129763 33.9931524,27.6306606 L23.5415395,30.6306606 L15.9931524,33.1306606 Z" id="路径-29" fill="#FFFFFF" transform="translate(24.993152, 30.380661) scale(-1, -1) rotate(6.000000) translate(-24.993152, -30.380661) "></path>
+                        <path d="M3,21.5 C12.3333333,16.8333333 18.6666667,14.5 22,14.5 C25.3333333,14.5 29.3333333,15.1666667 34,16.5 C27.3333333,15.5 22.8333333,15.1666667 20.5,15.5 C18.1666667,15.8333333 12.3333333,17.8333333 3,21.5 Z" id="路径-30" fill="#FFFFFF"></path>
+                        <path d="M3,25 C11.3333333,22.3333333 17.6666667,20.6666667 22,20 C26.3333333,19.3333333 30.3333333,19.3333333 34,20 C27.6666667,20.6666667 23.3333333,21.1666667 21,21.5 C18.6666667,21.8333333 12.6666667,23 3,25 Z" id="路径-30" fill="#FFFFFF"></path>
+                        <path d="M0,28 L0,27.5 C9.86923557,25.9330122 15.2025689,25.0996789 16,25 C18.6487574,24.6689053 24.6487574,24.335572 34,24 L37,24 L37,25.5 L34,25.5 C26.3753182,26.9701926 21.8753182,27.803526 20.5,28 C18.1666667,28.3333333 11.3333333,28.3333333 0,28 Z" id="路径-30" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

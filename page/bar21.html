@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">柱图实现排行榜</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'), 'skinUpp');
+
+var colorList = ['#f36c6c', '#e6cf4e', '#20d180', '#0093ff'];//色卡
+
+var option = {
+  // 标题
+  title: {
+    text: '柱图实现排行榜 - 数据为排序后数据',
+  },
+  grid: {
+    left: 120,
+    containLabel: false,
+  },
+  //提示框
+  tooltip: {
+    trigger: 'item',
+  },
+  // y轴
+  yAxis: {
+    type: 'category',
+    inverse: true,
+    axisLine: {
+      show: false
+    },
+    axisTick: {
+      show: false
+    },
+    axisLabel: {
+      margin: 100,
+      align: 'left',
+      color: '#333',
+      rich: {
+        a1: {
+          color: '#fff',
+          backgroundColor: colorList[0],
+          width: 30,
+          height: 30,
+          align: 'center',
+          borderRadius: 2
+        },
+        a2: {
+          color: '#fff',
+          backgroundColor: colorList[1],
+          width: 30,
+          height: 30,
+          align: 'center',
+          borderRadius: 2
+        },
+        a3: {
+          color: '#fff',
+          backgroundColor: colorList[2],
+          width: 30,
+          height: 30,
+          align: 'center',
+          borderRadius: 2
+        },
+        b: {
+          color: '#fff',
+          backgroundColor: colorList[3],
+          width: 30,
+          height: 30,
+          align: 'center',
+          borderRadius: 2
+        }
+      },
+      formatter: function (value, index) {
+        index++;
+        if (index - 1 < 3) {
+          return ['{a' + index + '|' + index + '}' + '  ' + value].join('\n')
+        } else {
+          return ['{b|' + index + '}' + '  ' + value].join('\n')
+        }
+      }
+    },
+    data: ['杭州市', '宁波市', '温州市', '湖州市', '嘉兴市', '绍兴市'],
+  },
+  // x轴
+  xAxis: {
+    type: 'value',
+    splitLine: {
+      show: false,
+    },
+    axisTick: {
+      show: false,
+    },
+    axisLine: {
+      show: false,
+    },
+    axisLabel: {
+      show: false,
+    }
+  },
+  // 数据
+  series: [{
+    name: '排行榜',
+    type: 'bar',
+    barWidth: 30,
+    label: {
+      show: true,
+      position: 'right',
+      color: '#333333',
+      fontSize: 14,
+      offset: [10, 0]
+    },
+    data: [366, 286, 182, 168, 153, 147].map((item, i) => {
+      itemStyle = {
+        color: i > 3 ? colorList[3] : colorList[i]
+      }
+      return {
+        value: item,
+        itemStyle: itemStyle
+      };
+    }),
+  }],
+};
+myChart.setOption(option);
+
+$(window).on('resize', function () {
+  myChart.resize();
+})
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>

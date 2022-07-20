@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>echarts图表</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="code-show">
+    <div class="code-top">
+      <h1 class="code-tit">象形柱图</h1>
+    </div>
+    <div class="code-con">
+      <!-- 左侧代码区域 -->
+      <div class="code-side">
+        <div class="code-side-top">
+          <div class="code-side-tit">代码</div>
+          <div class="code-side-btn">
+            <span class="btn-copy">点击复制</span>
+          </div>
+        </div>
+        <div class="code-side-con">
+          <pre><code id="code" class="javascript"></code></pre>
+        </div>
+      </div>
+      <!-- 分隔 -->
+      <div class="code-gutter"></div>
+      <!-- 右侧图表区域 -->
+      <div class="code-main">
+        <div id="chart" style="height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/echarts-skin.js"></script>
+<script id="chartCode">// 柱状图
+var myChart = echarts.init(document.getElementById('chart'),'skinUpp');
+var data = [320, 302, 301, 334, 390, 330, 320];
+var symbol = 'path://M3 9h11c1.373 0 3 1.28 3 3v13c-.004.496-.756 1.212-2 1-.608.212-1.358-.504-1-1V15h-1v21c.273 1.2-1.006 2-2 2-1.074 0-2.275-.762-2-2V26H8v10c.21 1.211-1.005 1.996-2 2-1.073-.004-2.352-.802-2-2V15H3v10c.325.49-.39 1.204-1 1-.289.212-.3.212 0 0-1.237.212-1.989-.504-2-1V12c0-1.774 1.628-3 3-3zm6-1C6.015 8 4 6.21 4 4s2.015-4 5-4c1.985 0 4 1.79 4 4s-2.015 4-4 4z';
+
+var option = {
+  // 标题
+  title: { 
+    text: '象形柱图 - fixed',
+  },
+  //提示框
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow',
+    },
+  },
+  // x轴
+  xAxis: {
+    type: 'value',
+    splitLine:{
+      show: false,
+    },
+    axisTick: {
+      show: false,
+    },
+    axisLine:{
+      show: false,
+    },
+    axisLabel:{
+      show: false,
+    }
+  },
+  // y轴
+  yAxis: {
+    type: 'category',
+    axisLine: {
+      show: false,
+    },
+    axisTick: {
+      show: false,
+    },
+    axisLabel: {
+      margin: 20,
+    },
+    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+  },
+  // 数据
+  series: [
+    {
+      // 背景
+      name: '背景',
+      type: 'pictorialBar',
+      symbol: symbol,
+      symbolSize: ['17', '38'],
+      symbolRepeat: 'fixed',
+      itemStyle: {
+        color: 'rgba(0,0,0,.15)',
+      },
+      tooltip: {
+        show: false
+      },
+      animationDuration: 0,//背景图去除动画
+      data: data,
+    },
+    {
+      name: '直接访问',
+      type: 'pictorialBar',
+      symbol: symbol,
+      symbolSize: ['17', '38'],
+      symbolRepeat: true,
+      symbolClip: true,
+      itemStyle: {
+        color: function(params) {
+          var colorList =["#3fb1e3", "#6be6c1", "#626c91", "#a0a7e6", "#c4ebad", "#96dee8","#f64246"];
+          return colorList[params.dataIndex]
+        },
+      },
+      z: 10,
+      data: data,
+    }
+  ],
+};
+myChart.setOption(option);
+
+$(window).on('resize',function(){
+  myChart.resize();
+})
+
+</script>
+
+<script src="../js/common.js"></script>
+</body>
+</html>
